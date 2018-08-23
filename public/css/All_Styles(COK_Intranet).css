@@ -1,0 +1,155 @@
+/*
+Author: Gavin Palmer
+Author URL: http://www.gp-tech-co.com
+License: 
+License 
+*/
+
+/*_______________________________________________________[Global]__________________________________________________________________________*/
+
+@font-face {
+    font-family: Everything_Holiday;
+    src: url(../fonts/Everything_Holiday.otf);
+}
+
+@font-face {
+    font-family: DK_Cool_Crayon;
+    src: url(../fonts/DK_Cool_Crayon.ttf);
+}
+
+
+/*_________________________________________________________[Ids]___________________________________________________________________________*/
+
+
+
+
+/*_______________________________________________________[Classes]__________________________________________________________________________*/
+
+.Quick_search_results
+{
+    border-radius: 0;
+    border: none;
+    background: rgba(0, 0, 0, 0.75);
+    width: 100%;
+    padding: 0 5%;
+	-webkit-box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 #e2e3df, 0 3px 6px rgba(0, 0, 0, 0.05);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    font-size: 2em;
+    padding: 1em 2em;
+	color: #fff;
+}
+
+
+.font_style_1
+{
+    font-size: 1.2em;
+    margin: 1em 0;
+    font-weight: 600;
+}
+
+
+.Note
+{
+	height: 100%;
+	width: 100%;
+}
+
+.font_style_2
+{
+    /*font-size: 1em;
+    line-height: 1.8em;
+    color: #777;*/
+	font-size: 0.95em;
+}
+
+.pignose-gallery {
+    margin: 0 auto;
+    width: 500px;
+    height: 400px;
+}
+
+.gallery-item_add_on
+{
+    padding-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: white;
+    /*font-family: Everything_Holiday;*/
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bgimg
+{
+    background-image: url('../images/confetti_png_5691.png');
+}
+
+.noticeboard
+{
+    background-image: url('../images/Black_Chalkboard_Background.png');
+}
+
+
+.intranet_container
+{
+    width: 800;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    padding-left: 50px;
+}
+
+.documents_header
+{ 
+    background-color: #ffb500;
+    color: #000000;
+    border-radius: 25px;
+    font-size: 36px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 300px;
+}
+
+.search
+{
+    border: 2px solid #ffb500;
+    color: #000000;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+.documents
+{ 
+    background-color: #FFFFFF;
+    color: #000000;
+    cursor: pointer;
+    min-height: 150px;
+}
+
+.documents:hover
+{ 
+    background-color: #ffb500;
+    color: #FFFFFF;
+    cursor: pointer;
+    min-height: 150px;
+}
+
+
+
+/*$[G-P]*/
