@@ -1,8 +1,17 @@
-App.controller('headerController', ['$scope', '$http', '$rootScope', 'APP_Config', 'categoryService', 'shoppingCartService', 'loginService', function($scope, $http, $rootScope, APP_Config, categoryService, shoppingCartService, loginService)
+App.controller('headerController', ['$scope', '$http', '$rootScope', 'APP_Config', 'userService', 'licenseService', function($scope, $http, $rootScope, APP_Config, userService, licenseService)
 {
-	//console.log("START - headerController");
+	$rootScope.utilityService.console_log("START - headerController");
 	
 	/*[Description]*/
+
+
+	/*[Variables]*/
+	$scope.OverUsedLicense = 0;
+	$scope.ExpiredLicense = 0;
+	$scope.SoonToExpiredLicense = 0;
+	$rootScope.notifications = [];
+
+
 	
 	/*[Methods]*/
 	
@@ -15,14 +24,14 @@ App.controller('headerController', ['$scope', '$http', '$rootScope', 'APP_Config
 	*/
 	$scope.Logout = function ()
 	{
-		console.log("START - Logout");
+		$rootScope.utilityService.console_log("START - Logout");
 		
-		loginService.getLogout().then(function(data)
+		userService.postLogOut().then(function(data)
 		{
-			console.log(data);
+			$rootScope.utilityService.console_log(data);
 			if(data.status == 200)
 			{
-				location.assign(APP_Config.App_URL+'home');
+				location.assign(APP_Config.App_URL+'login');
 			}
 			else if(data.status == 419)
 			{
@@ -34,72 +43,29 @@ App.controller('headerController', ['$scope', '$http', '$rootScope', 'APP_Config
 			}
 		});
 		
-		console.log("STOP - Logout");
+		$rootScope.utilityService.console_log("STOP - Logout");
 	}
-	
-	
+
+
 	/**
-	*	@Description: 
+	*	@Description: Get the Logged in user infromation
 	*
 	*	@param:
 	*
 	*	@return:
 	*/
-	$scope.set_subcategories = function(Subcategories)
+	$scope.getUserInfo = function ()
 	{
-		$scope.subcategories = Subcategories;
-	}
-	
-	
-	/*[Globals]*/
-	angular.element(document).ready(function ()
-	{
-		console.log("START - angular ready");
+		$rootScope.utilityService.console_log("START - getUserInfo");
 		
-		//Variables
-		
-		categoryService.getCategories().then(function(data)
+		userService.getLoggInUserInfo().then(function(data)
 		{
-			$scope.categories = data;
-		});
-		
-		
-		$scope.shoppingCartService = shoppingCartService;
-		
-		$scope.shoppingCartService.initialize();
-		
-		$scope.shoppingCartService.getShoppingCart(1).then(function(data)
-		{
-			console.log(data);
+			$rootScope.utilityService.console_log(data);
 			if(data.status == 200)
 			{
-				$scope.shoppingCart = data.data;
-				
-				$scope.shoppingCartService.Amount = $scope.shoppingCart.length;
-				
-				$scope.shoppingCartService.Value = 0;
-				for(var a=0; a<$scope.shoppingCart.length; a++)
-				{
-					$scope.shoppingCartService.Value+=parseFloat($scope.shoppingCart[0].price);
-				}
-			}
-			else if(data.status == 419)
-			{
-				//sweetAlert("Oops...", ""+data.data.Error, "warning");
-			}
-			else
-			{
-				sweetAlert("Oops...", "An unexpect error occured, our engineers will be working to get it resolved. Please try again later", "error");
-			}
-		});
-		
-		
-		$rootScope.loginService.getLoginStatus().then(function(data)
-		{
-			console.log(data);
-			if(data.status == 200)
-			{
-				$rootScope.LoginStatus = data.data;
+				$scope.user_info = data.data[0];
+				$rootScope.user_info = data.data[0];
+				$rootScope.utilityService.console_log($scope.user_info)
 			}
 			else if(data.status == 419)
 			{
@@ -111,7 +77,119 @@ App.controller('headerController', ['$scope', '$http', '$rootScope', 'APP_Config
 			}
 		});
 		
-		console.log("STOP - angular ready");
+		$rootScope.utilityService.console_log("STOP - getUserInfo");
+	}
+
+
+	/**
+	*	@Description: Get Distinct License User
+	*
+	*	@param:
+	*
+	*	@return:
+	*/
+	$scope.getLicenseReport = function ()
+	{
+		$rootScope.utilityService.console_log("START - getLicenseReport");
+
+		$("#Reload_License").hide();
+		
+		licenseService.getLicenseReport().then(function(data)
+		{
+			$rootScope.utilityService.console_log("License Report Data:");
+			$rootScope.utilityService.console_log(data);
+
+			if(data.status == 200)
+			{
+				$("#Reload_License").hide();
+
+				$scope.LicenseReport = data.data;
+
+				for(var a = 0; a<$scope.LicenseReport.length; a++)
+				{
+					//Calculate expired and over use licenses
+					if($scope.LicenseReport[a].LicenseUsers.length>$scope.LicenseReport[a].volume)
+					{
+						
+						$scope.OverUsedLicense += 1;
+					}
+
+					var todaysDate = new Date();
+
+					if(new Date($scope.LicenseReport[a].renewal_date) <= todaysDate)
+					{
+						$scope.ExpiredLicense += 1;
+					}
+
+					//Calculate and assign License that soon to expire.
+					var today = new Date();
+					var priorDate = new Date().setDate(today.getDate()+30);
+					priorDate = new Date(priorDate);
+
+					if((new Date($scope.LicenseReport[a].renewal_date) >= today) && (new Date($scope.LicenseReport[a].renewal_date) <= priorDate))
+					{
+						$scope.SoonToExpiredLicense += 1;
+					}
+
+
+
+					//Set the header notifications
+					if(($scope.LicenseReport[a].LicenseUsers.length/$scope.LicenseReport[a].volume)*100>90)
+					{
+						
+						$scope.OverUsedLicense += 1; 
+
+
+						var notification =
+						{
+							type: 'usage',
+							license: $scope.LicenseReport[a]
+						};
+
+						$rootScope.notifications.push(notification);
+					}
+
+					var todaysDate = new Date();
+
+					if(new Date($scope.LicenseReport[a].renewal_date) <= todaysDate)
+					{
+						var notification =
+						{
+							type: 'expiry',
+							license: $scope.LicenseReport[a]
+						};
+
+						$rootScope.notifications.push(notification);
+					}
+
+				}
+			}
+			else if(data.status == 419)
+			{
+				$("#Reload_License").show();
+			}
+			else
+			{
+				$("#Reload_License").show();
+			}
+		});
+		
+		$rootScope.utilityService.console_log("STOP - getLicenseReport");
+	}
+
+	
+	
+	/*[Globals]*/
+	angular.element(document).ready(function ()
+	{
+		$rootScope.utilityService.console_log("START - angular ready");
+		
+		//Variables
+		$scope.getUserInfo();
+		$scope.getLicenseReport();
+		
+		
+		$rootScope.utilityService.console_log("STOP - angular ready");
     });
-	//console.log("STOP - headerController");
+	$rootScope.utilityService.console_log("STOP - headerController");
 }]);
