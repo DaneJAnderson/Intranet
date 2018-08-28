@@ -11,9 +11,9 @@
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<!--li data-target="#myCarousel" data-slide-to="1" class=""></li>
+			<li data-target="#myCarousel" data-slide-to="1" class=""></li>
 			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-			<li data-target="#myCarousel" data-slide-to="3" class=""></li-->
+			<!--li data-target="#myCarousel" data-slide-to="3" class=""></li-->
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
@@ -35,11 +35,11 @@
 					</div>
 				</div>
 			</div>
-			<!--div class="item item2">
+			<div class="item item2">
 				<div class="container">
 					<div class="carousel-caption">
-						<h3>Best Business Thinking</h3>
-						<p>You deserve the best</p>
+						<h3>COK Health fair 2018</h3>
+						<!--p>You deserve the best</p>
 						<div class="top-buttons">
 							<div class="bnr-button">
 								<a class="act" href="single.html">Read More</a>
@@ -48,16 +48,16 @@
 								<a href="portfolio.html" class="two scroll ">Portfolio</a>
 							</div>
 							<div class="clearfix"> </div>
-						</div>
+						</div-->
 					</div>
 				</div>
 			</div>
 			<div class="item item3">
 				<div class="container">
 					<div class="carousel-caption">
-						<h3>Build Effective Designs</h3>
-						<p>Solutions made easy</p>
-						<div class="top-buttons">
+						<!--h3>Giving back you the commity</h3-->
+						<p>Giving back to the community</p>
+						<!--div class="top-buttons">
 							<div class="bnr-button">
 								<a class="act" href="single.html">Read More</a>
 							</div>
@@ -65,12 +65,11 @@
 								<a href="portfolio.html" class="two scroll ">Portfolio</a>
 							</div>
 							<div class="clearfix"> </div>
-						</div>
-
+						</div-->
 					</div>
 				</div>
 			</div>
-			<div class="item item4">
+			<!--div class="item item4">
 				<div class="container">
 					<div class="carousel-caption">
 
@@ -179,16 +178,10 @@
 			</p>
 			
 			<div class="gallery" style="background-color: transparent;">
-				<div class="gallery-item gallery-item_add_on">Gavin Palmer (19th)<br/><br/><img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/profile_images/palmerg_1526922760.jpg" alt="" /></div>
-				<div class="gallery-item gallery-item_add_on">KIMONE BROWN<br/><br/><img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/profile_images/brownk_1529074060.jpeg" alt="" /></div>
-				<div class="gallery-item gallery-item_add_on">MARCIA HUNTER-ANDERSON<br/><br/><img src="images/Female_worker.png" alt="" /></div>
-				<div class="gallery-item gallery-item_add_on">KIMBLEE ELLIOTT (21st)<br/><br/><img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/profile_images/elliottk_1528409729.jpeg" alt="" /></div>
-				<div class="gallery-item gallery-item_add_on">WINSOME WHYLIE-TAI (21st)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
+				<div class="gallery-item gallery-item_add_on">JUANIQUE HOLMES (26th)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
+
 				<div class="gallery-thumbnails" style="">
-					<a href="#"><img src="images/Male_worker.png" alt="" /></a>
-					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
-					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
-					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
+					<!--a href="#"><img src="images/Male_worker.png" alt="" /></a-->
 					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
 				</div>
 			</div>
@@ -296,7 +289,7 @@
 					</div>
 
 					<div class="col-md-6 banner_bottom_grid help">
-						<img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/articles/5.JPG" alt=" " class="img-responsive">
+						<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/labour_day_2014.jpg" alt=" " class="img-responsive">
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -532,11 +525,11 @@
 					<li class="portfolio-item2" data-id="id-7" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
-							<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Micro_Finance.png" rel="prettyPhoto[gallery]">
-								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Micro_Finance.png" class="img-responsive" alt="Conceit">
+							<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>images/marketing.png" rel="prettyPhoto[gallery]">
+								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/marketing.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
-									<h5>Micro Finance</h5>
-									<p>Unit</p>
+									<h5>Marketing</h5>
+									<p>Department</p>
 								</div>
 							</a>
 						</span>
@@ -546,11 +539,11 @@
 					<li class="portfolio-item2" data-id="id-7" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
-							<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>images/marketing.png" rel="prettyPhoto[gallery]">
-								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/marketing.png" class="img-responsive" alt="Conceit">
+							<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Micro_Finance.png" rel="prettyPhoto[gallery]">
+								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Micro_Finance.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
-									<h5>Marketing</h5>
-									<p>Department</p>
+									<h5>Micro Finance</h5>
+									<p>Unit</p>
 								</div>
 							</a>
 						</span>

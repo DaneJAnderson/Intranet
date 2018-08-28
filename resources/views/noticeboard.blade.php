@@ -55,7 +55,7 @@
 					<a class="image-zoom" href="https://www.cuna.org/cpdonline/" target="_blank" rel="prettyPhoto[gallery]">
 						<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/CUNA.png" class="img-responsive" alt="Conceit" style="background-color: white;">
 						<div class="port-info" style="background-color: transparent;">
-							<h5 style="color: #ffb500; font-family: DK_Cool_Crayon;">Cuna forms</h5>
+							<h5 style="color: #ffb500; font-family: DK_Cool_Crayon;">Cuna related</h5>
 							<p style="color: white; font-family: DK_Cool_Crayon;">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/clock_white.png" class="" alt="Conceit" style="width: 25px; height: 25px; background-color: transparent; padding: 0px;">
 								July 31, 2018
@@ -73,7 +73,7 @@
 					<a class="image-zoom" href="http://intranew/intranet/PDF/doc07166420180125163515.pdf" target="_blank" rel="prettyPhoto[gallery]">
 						<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/increase_in_card_limit.png" class="img-responsive" alt="Conceit" style="background-color: white;">
 						<div class="port-info" style="background-color: transparent;">
-							<h5 style="color: #ffb500; font-family: DK_Cool_Crayon;">Cuna forms</h5>
+							<h5 style="color: #ffb500; font-family: DK_Cool_Crayon;">Debit card limit notice</h5>
 							<p style="color: white; font-family: DK_Cool_Crayon;">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/clock_white.png" class="" alt="Conceit" style="width: 25px; height: 25px; background-color: transparent; padding: 0px;">
 								July 31, 2018
