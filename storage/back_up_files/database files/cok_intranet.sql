@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 17, 2018 at 11:01 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 5.6.32
+-- Generation Time: Aug 30, 2018 at 11:43 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 5.6.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -26,6 +26,52 @@ DELIMITER $$
 --
 -- Procedures
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `activities_Insert` (IN `type` INT, IN `entity` VARCHAR(100), IN `username` VARCHAR(100), IN `comment` TEXT)  NO SQL
+    SQL SECURITY INVOKER
+BEGIN
+		DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+    	ROLLBACK;
+        
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+ 		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+        
+        INSERT INTO db_errors (ERROR_NUMBER, STATE, TEXT, Procedure_or_Function_name)
+		VALUES (@errno, @sqlstate, @text, 'activities_Insert');
+    
+        RESIGNAL;
+	END;
+    
+    	START TRANSACTION;
+        INSERT INTO activities(type, entity, username, comment, status, created_by, updated_by)
+        VALUES(type, entity, username, comment, 1, username, username);
+    COMMIT;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `admin_groups_Retrieve` ()  NO SQL
+    SQL SECURITY INVOKER
+BEGIN
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	BEGIN
+    	ROLLBACK;
+        
+		GET DIAGNOSTICS CONDITION 1 @sqlstate = RETURNED_SQLSTATE, 
+ 		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
+        
+        INSERT INTO db_errors (ERROR_NUMBER, STATE, TEXT, Procedure_or_Function_name)
+		VALUES (@errno, @sqlstate, @text, 'admin_groups_Retrieve');
+    
+        RESIGNAL;
+	END;
+    
+	START TRANSACTION;
+    	SELECT admin_groups.id, admin_groups.name, admin_groups.access_level, admin_groups.Domain_Controller, admin_groups.status
+        FROM admin_groups
+        WHERE admin_groups.status = 1
+        ORDER BY admin_groups.id DESC;
+    COMMIT;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `articles_byID_Retrieve` (IN `id` INT UNSIGNED)  NO SQL
     SQL SECURITY INVOKER
 BEGIN
@@ -152,7 +198,7 @@ BEGIN
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_byUsernameOrEmail_Retrieve` (IN `username` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `galleries_Retrieve` ()  NO SQL
     SQL SECURITY INVOKER
 BEGIN
 	DECLARE EXIT HANDLER FOR SQLEXCEPTION
@@ -163,24 +209,23 @@ BEGIN
  		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
         
         INSERT INTO db_errors (ERROR_NUMBER, STATE, TEXT, Procedure_or_Function_name)
-		VALUES (@errno, @sqlstate, @text, 'users_byUsernameOrEmail_Retrieve');
+		VALUES (@errno, @sqlstate, @text, 'galleries_Retrieve');
     
         RESIGNAL;
 	END;
     
 	START TRANSACTION;
-    	SELECT *
-		FROM users
-        WHERE users.username = username
-        OR
-        users.email = username;
+    	SELECT galleries.id, galleries.name, galleries.description, galleries.image, galleries.created_at
+		FROM galleries
+        WHERE galleries.status = 1
+        ORDER BY galleries.id DESC;
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_Create` (IN `username` VARCHAR(100), IN `email` VARCHAR(100), IN `encrypted_password` VARCHAR(100), IN `first_name` VARCHAR(100), IN `last_name` VARCHAR(100), IN `number` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `photos_byGalleryID_Retrieve` (IN `gallery_id` INT UNSIGNED)  NO SQL
     SQL SECURITY INVOKER
 BEGIN
-		DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	BEGIN
     	ROLLBACK;
         
@@ -188,21 +233,24 @@ BEGIN
  		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
         
         INSERT INTO db_errors (ERROR_NUMBER, STATE, TEXT, Procedure_or_Function_name)
-		VALUES (@errno, @sqlstate, @text, 'users_Create');
+		VALUES (@errno, @sqlstate, @text, 'photos_byGalleryID_Retrieve');
     
         RESIGNAL;
 	END;
     
-    	START TRANSACTION;
-        INSERT INTO users(username, email, encrypted_password, first_name, last_name, number)
-        VALUES(username, email, encrypted_password, first_name, last_name, number);
+	START TRANSACTION;
+    	SELECT photos.id, photos.gallery_id, photos.image, photos.created_at
+		FROM photos
+        WHERE photos.gallery_id = gallery_id
+        AND photos.status = 1
+        ORDER BY photos.id DESC;
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `users_password_Update` (IN `username` VARCHAR(100), IN `password` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `user_roles_ByID_Retrieve` (IN `username` INT)  NO SQL
     SQL SECURITY INVOKER
 BEGIN
-		DECLARE EXIT HANDLER FOR SQLEXCEPTION
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION
 	BEGIN
     	ROLLBACK;
         
@@ -210,19 +258,222 @@ BEGIN
  		@errno = MYSQL_ERRNO, @text = MESSAGE_TEXT;
         
         INSERT INTO db_errors (ERROR_NUMBER, STATE, TEXT, Procedure_or_Function_name)
-		VALUES (@errno, @sqlstate, @text, 'users_password_Update');
+		VALUES (@errno, @sqlstate, @text, 'user_roles_ByID_Retrieve');
     
         RESIGNAL;
 	END;
     
-    	START TRANSACTION;
-        UPDATE users
-        SET encrypted_password = password
-        WHERE users.username = username;
+	START TRANSACTION;
+    	SELECT user_roles.id, user_roles.username, user_roles.role_id
+		FROM user_roles
+        WHERE user_roles.status = 1;
     COMMIT;
 END$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` tinyint(3) UNSIGNED NOT NULL COMMENT '1: insert, 2: retrieve, 3: Update, 4: delete',
+  `entity` varchar(100) NOT NULL COMMENT 'Table being affected',
+  `username` varchar(100) NOT NULL,
+  `comment` text NOT NULL,
+  `status` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `activities`
+--
+
+INSERT INTO `activities` (`id`, `date`, `type`, `entity`, `username`, `comment`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(3, '2018-07-09 10:01:16', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-09 10:01:16', 'palmerg', '2018-07-09 10:01:16', 'palmerg'),
+(4, '2018-07-09 10:06:32', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 10:06:32', 'palmerg', '2018-07-09 10:06:32', 'palmerg'),
+(21, '2018-07-09 10:56:16', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 10:56:16', 'palmerg', '2018-07-09 10:56:16', 'palmerg'),
+(22, '2018-07-09 11:00:32', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-09 11:00:32', 'palmerg', '2018-07-09 11:00:32', 'palmerg'),
+(23, '2018-07-09 11:00:36', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 11:00:36', 'palmerg', '2018-07-09 11:00:36', 'palmerg'),
+(24, '2018-07-09 11:01:44', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-09 11:01:44', 'palmerg', '2018-07-09 11:01:44', 'palmerg'),
+(25, '2018-07-09 11:01:48', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 11:01:48', 'palmerg', '2018-07-09 11:01:48', 'palmerg'),
+(26, '2018-07-09 11:01:57', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 11:01:57', 'palmerg', '2018-07-09 11:01:57', 'palmerg'),
+(27, '2018-07-09 11:04:27', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 11:04:27', 'palmerg', '2018-07-09 11:04:27', 'palmerg'),
+(28, '2018-07-09 11:04:57', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-09 11:04:57', 'palmerg', '2018-07-09 11:04:57', 'palmerg'),
+(29, '2018-07-09 17:31:27', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-09 17:31:27', 'palmerg', '2018-07-09 17:31:27', 'palmerg'),
+(30, '2018-07-10 15:35:28', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-10 15:35:28', 'palmerg', '2018-07-10 15:35:28', 'palmerg'),
+(31, '2018-07-10 15:35:30', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-10 15:35:30', 'palmerg', '2018-07-10 15:35:30', 'palmerg'),
+(32, '2018-07-10 15:36:12', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-10 15:36:12', 'palmerg', '2018-07-10 15:36:12', 'palmerg'),
+(33, '2018-07-11 09:02:55', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-11 09:02:55', 'palmerg', '2018-07-11 09:02:55', 'palmerg'),
+(34, '2018-07-11 09:02:58', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:02:58', 'palmerg', '2018-07-11 09:02:58', 'palmerg'),
+(35, '2018-07-11 09:03:04', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:03:04', 'palmerg', '2018-07-11 09:03:04', 'palmerg'),
+(36, '2018-07-11 09:03:20', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:03:20', 'palmerg', '2018-07-11 09:03:20', 'palmerg'),
+(37, '2018-07-11 09:03:37', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:03:37', 'palmerg', '2018-07-11 09:03:37', 'palmerg'),
+(38, '2018-07-11 09:06:19', 1, 'Licenses', 'palmerg', 'Added new license', 1, '2018-07-11 09:06:19', 'palmerg', '2018-07-11 09:06:19', 'palmerg'),
+(39, '2018-07-11 09:06:24', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:06:24', 'palmerg', '2018-07-11 09:06:24', 'palmerg'),
+(40, '2018-07-11 09:19:00', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-11 09:19:00', 'palmerg', '2018-07-11 09:19:00', 'palmerg'),
+(41, '2018-07-12 16:00:16', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-12 16:00:16', 'palmerg', '2018-07-12 16:00:16', 'palmerg'),
+(42, '2018-07-13 08:05:34', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-13 08:05:34', 'palmerg', '2018-07-13 08:05:34', 'palmerg'),
+(43, '2018-07-13 08:05:37', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:05:37', 'palmerg', '2018-07-13 08:05:37', 'palmerg'),
+(44, '2018-07-13 08:06:04', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:06:04', 'palmerg', '2018-07-13 08:06:04', 'palmerg'),
+(45, '2018-07-13 08:14:40', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:14:40', 'palmerg', '2018-07-13 08:14:40', 'palmerg'),
+(46, '2018-07-13 08:18:17', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:18:17', 'palmerg', '2018-07-13 08:18:17', 'palmerg'),
+(47, '2018-07-13 08:19:02', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:19:02', 'palmerg', '2018-07-13 08:19:02', 'palmerg'),
+(48, '2018-07-13 08:19:19', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:19:19', 'palmerg', '2018-07-13 08:19:19', 'palmerg'),
+(49, '2018-07-13 08:20:44', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:20:44', 'palmerg', '2018-07-13 08:20:44', 'palmerg'),
+(50, '2018-07-13 08:22:12', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:22:12', 'palmerg', '2018-07-13 08:22:12', 'palmerg'),
+(51, '2018-07-13 08:23:45', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:23:45', 'palmerg', '2018-07-13 08:23:45', 'palmerg'),
+(52, '2018-07-13 08:27:11', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:27:11', 'palmerg', '2018-07-13 08:27:11', 'palmerg'),
+(53, '2018-07-13 08:28:52', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:28:52', 'palmerg', '2018-07-13 08:28:52', 'palmerg'),
+(54, '2018-07-13 08:57:28', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 08:57:28', 'palmerg', '2018-07-13 08:57:28', 'palmerg'),
+(55, '2018-07-13 09:01:40', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 09:01:40', 'palmerg', '2018-07-13 09:01:40', 'palmerg'),
+(56, '2018-07-13 09:03:17', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-13 09:03:17', 'palmerg', '2018-07-13 09:03:17', 'palmerg'),
+(57, '2018-07-13 09:03:21', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 09:03:21', 'palmerg', '2018-07-13 09:03:21', 'palmerg'),
+(58, '2018-07-13 09:03:32', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 09:03:32', 'palmerg', '2018-07-13 09:03:32', 'palmerg'),
+(59, '2018-07-13 09:07:42', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 09:07:42', 'palmerg', '2018-07-13 09:07:42', 'palmerg'),
+(60, '2018-07-13 09:33:23', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-13 09:33:23', 'palmerg', '2018-07-13 09:33:23', 'palmerg'),
+(61, '2018-07-16 08:36:54', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-16 08:36:54', 'palmerg', '2018-07-16 08:36:54', 'palmerg'),
+(62, '2018-07-16 08:36:56', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-16 08:36:56', 'palmerg', '2018-07-16 08:36:56', 'palmerg'),
+(63, '2018-07-16 08:38:22', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-16 08:38:22', 'palmerg', '2018-07-16 08:38:22', 'palmerg'),
+(64, '2018-07-17 10:49:50', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-17 10:49:50', 'palmerg', '2018-07-17 10:49:50', 'palmerg'),
+(65, '2018-07-17 10:49:52', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-17 10:49:52', 'palmerg', '2018-07-17 10:49:52', 'palmerg'),
+(66, '2018-07-17 10:49:58', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-17 10:49:58', 'palmerg', '2018-07-17 10:49:58', 'palmerg'),
+(67, '2018-07-17 10:52:32', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-17 10:52:32', 'palmerg', '2018-07-17 10:52:32', 'palmerg'),
+(68, '2018-07-17 10:53:14', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-17 10:53:14', 'palmerg', '2018-07-17 10:53:14', 'palmerg'),
+(69, '2018-07-17 10:53:18', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-17 10:53:18', 'palmerg', '2018-07-17 10:53:18', 'palmerg'),
+(70, '2018-07-17 10:57:00', 1, 'NONE', 'morgano', 'Logged in', 1, '2018-07-17 10:57:00', 'morgano', '2018-07-17 10:57:00', 'morgano'),
+(71, '2018-07-17 10:59:14', 2, 'Licenses', 'morgano', 'views the user licenses', 1, '2018-07-17 10:59:14', 'morgano', '2018-07-17 10:59:14', 'morgano'),
+(72, '2018-07-17 11:00:35', 2, 'Licenses', 'morgano', 'views the user licenses', 1, '2018-07-17 11:00:35', 'morgano', '2018-07-17 11:00:35', 'morgano'),
+(73, '2018-07-18 09:37:44', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-18 09:37:44', 'palmerg', '2018-07-18 09:37:44', 'palmerg'),
+(74, '2018-07-18 09:37:47', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:37:47', 'palmerg', '2018-07-18 09:37:47', 'palmerg'),
+(75, '2018-07-18 09:43:36', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:43:36', 'palmerg', '2018-07-18 09:43:36', 'palmerg'),
+(76, '2018-07-18 09:45:26', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:45:26', 'palmerg', '2018-07-18 09:45:26', 'palmerg'),
+(77, '2018-07-18 09:47:37', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:47:37', 'palmerg', '2018-07-18 09:47:37', 'palmerg'),
+(78, '2018-07-18 09:58:07', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:58:07', 'palmerg', '2018-07-18 09:58:07', 'palmerg'),
+(79, '2018-07-18 09:59:39', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 09:59:39', 'palmerg', '2018-07-18 09:59:39', 'palmerg'),
+(80, '2018-07-18 10:00:05', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 10:00:05', 'palmerg', '2018-07-18 10:00:05', 'palmerg'),
+(81, '2018-07-18 10:02:27', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-18 10:02:27', 'palmerg', '2018-07-18 10:02:27', 'palmerg'),
+(82, '2018-07-19 15:20:09', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-19 15:20:09', 'palmerg', '2018-07-19 15:20:09', 'palmerg'),
+(83, '2018-07-19 15:20:13', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:20:13', 'palmerg', '2018-07-19 15:20:13', 'palmerg'),
+(84, '2018-07-19 15:22:22', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:22:22', 'palmerg', '2018-07-19 15:22:22', 'palmerg'),
+(85, '2018-07-19 15:30:34', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:30:34', 'palmerg', '2018-07-19 15:30:34', 'palmerg'),
+(86, '2018-07-19 15:30:59', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:30:59', 'palmerg', '2018-07-19 15:30:59', 'palmerg'),
+(87, '2018-07-19 15:36:02', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:36:02', 'palmerg', '2018-07-19 15:36:02', 'palmerg'),
+(88, '2018-07-19 15:37:48', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-19 15:37:48', 'palmerg', '2018-07-19 15:37:48', 'palmerg'),
+(89, '2018-07-23 10:50:49', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 10:50:49', 'palmerg', '2018-07-23 10:50:49', 'palmerg'),
+(90, '2018-07-23 10:50:51', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 10:50:51', 'palmerg', '2018-07-23 10:50:51', 'palmerg'),
+(91, '2018-07-23 10:53:14', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 10:53:14', 'palmerg', '2018-07-23 10:53:14', 'palmerg'),
+(92, '2018-07-23 10:55:04', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 10:55:04', 'palmerg', '2018-07-23 10:55:04', 'palmerg'),
+(93, '2018-07-23 10:55:20', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 10:55:20', 'palmerg', '2018-07-23 10:55:20', 'palmerg'),
+(94, '2018-07-23 11:01:26', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 11:01:26', 'palmerg', '2018-07-23 11:01:26', 'palmerg'),
+(95, '2018-07-23 11:02:35', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 11:02:35', 'palmerg', '2018-07-23 11:02:35', 'palmerg'),
+(96, '2018-07-23 12:25:57', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:25:57', 'palmerg', '2018-07-23 12:25:57', 'palmerg'),
+(97, '2018-07-23 12:36:15', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:36:15', 'palmerg', '2018-07-23 12:36:15', 'palmerg'),
+(98, '2018-07-23 12:45:13', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:45:13', 'palmerg', '2018-07-23 12:45:13', 'palmerg'),
+(99, '2018-07-23 12:45:33', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:45:33', 'palmerg', '2018-07-23 12:45:33', 'palmerg'),
+(100, '2018-07-23 12:45:38', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:45:38', 'palmerg', '2018-07-23 12:45:38', 'palmerg'),
+(101, '2018-07-23 12:45:50', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:45:50', 'palmerg', '2018-07-23 12:45:50', 'palmerg'),
+(102, '2018-07-23 12:45:53', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:45:53', 'palmerg', '2018-07-23 12:45:53', 'palmerg'),
+(103, '2018-07-23 12:54:59', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:54:59', 'palmerg', '2018-07-23 12:54:59', 'palmerg'),
+(104, '2018-07-23 12:55:03', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 12:55:03', 'palmerg', '2018-07-23 12:55:03', 'palmerg'),
+(105, '2018-07-23 12:58:09', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 12:58:09', 'palmerg', '2018-07-23 12:58:09', 'palmerg'),
+(106, '2018-07-23 12:58:37', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 12:58:37', 'palmerg', '2018-07-23 12:58:37', 'palmerg'),
+(107, '2018-07-23 12:58:41', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 12:58:41', 'palmerg', '2018-07-23 12:58:41', 'palmerg'),
+(108, '2018-07-23 13:02:29', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:02:29', 'palmerg', '2018-07-23 13:02:29', 'palmerg'),
+(109, '2018-07-23 13:02:58', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 13:02:58', 'palmerg', '2018-07-23 13:02:58', 'palmerg'),
+(110, '2018-07-23 13:03:02', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:03:02', 'palmerg', '2018-07-23 13:03:02', 'palmerg'),
+(111, '2018-07-23 13:03:45', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:03:45', 'palmerg', '2018-07-23 13:03:45', 'palmerg'),
+(112, '2018-07-23 13:05:46', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:05:46', 'palmerg', '2018-07-23 13:05:46', 'palmerg'),
+(113, '2018-07-23 13:06:03', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:06:03', 'palmerg', '2018-07-23 13:06:03', 'palmerg'),
+(114, '2018-07-23 13:06:15', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:06:15', 'palmerg', '2018-07-23 13:06:15', 'palmerg'),
+(115, '2018-07-23 13:06:57', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 13:06:57', 'palmerg', '2018-07-23 13:06:57', 'palmerg'),
+(116, '2018-07-23 14:49:47', 1, 'NONE', 'stephensonc', 'Logged in', 1, '2018-07-23 14:49:47', 'stephensonc', '2018-07-23 14:49:47', 'stephensonc'),
+(117, '2018-07-23 14:49:48', 2, 'Licenses', 'stephensonc', 'views the user licenses', 1, '2018-07-23 14:49:48', 'stephensonc', '2018-07-23 14:49:48', 'stephensonc'),
+(118, '2018-07-23 14:56:08', 2, 'Licenses', 'stephensonc', 'views the user licenses', 1, '2018-07-23 14:56:08', 'stephensonc', '2018-07-23 14:56:08', 'stephensonc'),
+(119, '2018-07-23 14:59:31', 2, 'Licenses', 'stephensonc', 'views the user licenses', 1, '2018-07-23 14:59:31', 'stephensonc', '2018-07-23 14:59:31', 'stephensonc'),
+(120, '2018-07-23 15:02:32', 2, 'Licenses', 'stephensonc', 'views the user licenses', 1, '2018-07-23 15:02:32', 'stephensonc', '2018-07-23 15:02:32', 'stephensonc'),
+(121, '2018-07-23 15:03:02', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-23 15:03:02', 'palmerg', '2018-07-23 15:03:02', 'palmerg'),
+(122, '2018-07-23 15:03:03', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 15:03:03', 'palmerg', '2018-07-23 15:03:03', 'palmerg'),
+(123, '2018-07-23 15:06:30', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 15:06:30', 'palmerg', '2018-07-23 15:06:30', 'palmerg'),
+(124, '2018-07-23 15:07:07', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 15:07:07', 'palmerg', '2018-07-23 15:07:07', 'palmerg'),
+(125, '2018-07-23 15:07:40', 1, 'NONE', 'bonnickn', 'Logged in', 1, '2018-07-23 15:07:40', 'bonnickn', '2018-07-23 15:07:40', 'bonnickn'),
+(126, '2018-07-23 15:07:42', 2, 'Licenses', 'bonnickn', 'views the user licenses', 1, '2018-07-23 15:07:42', 'bonnickn', '2018-07-23 15:07:42', 'bonnickn'),
+(127, '2018-07-23 15:11:31', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 15:11:31', 'palmerg', '2018-07-23 15:11:31', 'palmerg'),
+(128, '2018-07-23 15:11:33', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-23 15:11:33', 'palmerg', '2018-07-23 15:11:33', 'palmerg'),
+(129, '2018-07-24 10:46:59', 1, 'NONE', 'bonnickn', 'Logged in', 1, '2018-07-24 10:46:59', 'bonnickn', '2018-07-24 10:46:59', 'bonnickn'),
+(130, '2018-07-24 10:47:00', 2, 'Licenses', 'bonnickn', 'views the user licenses', 1, '2018-07-24 10:47:00', 'bonnickn', '2018-07-24 10:47:00', 'bonnickn'),
+(131, '2018-07-24 10:47:30', 2, 'Licenses', 'bonnickn', 'views the user licenses', 1, '2018-07-24 10:47:30', 'bonnickn', '2018-07-24 10:47:30', 'bonnickn'),
+(132, '2018-07-24 10:47:40', 2, 'Licenses', 'bonnickn', 'views the user licenses', 1, '2018-07-24 10:47:40', 'bonnickn', '2018-07-24 10:47:40', 'bonnickn'),
+(133, '2018-07-24 10:48:05', 2, 'Licenses', 'bonnickn', 'views the user licenses', 1, '2018-07-24 10:48:05', 'bonnickn', '2018-07-24 10:48:05', 'bonnickn'),
+(134, '2018-07-24 13:52:34', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-24 13:52:34', 'palmerg', '2018-07-24 13:52:34', 'palmerg'),
+(135, '2018-07-24 13:52:35', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:52:35', 'palmerg', '2018-07-24 13:52:35', 'palmerg'),
+(136, '2018-07-24 13:53:41', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:53:41', 'palmerg', '2018-07-24 13:53:41', 'palmerg'),
+(137, '2018-07-24 13:54:55', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:54:55', 'palmerg', '2018-07-24 13:54:55', 'palmerg'),
+(138, '2018-07-24 13:55:26', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:55:26', 'palmerg', '2018-07-24 13:55:26', 'palmerg'),
+(139, '2018-07-24 13:58:06', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:58:06', 'palmerg', '2018-07-24 13:58:06', 'palmerg'),
+(140, '2018-07-24 13:58:21', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 13:58:21', 'palmerg', '2018-07-24 13:58:21', 'palmerg'),
+(141, '2018-07-24 14:06:14', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-07-24 14:06:14', 'palmerg', '2018-07-24 14:06:14', 'palmerg'),
+(142, '2018-07-24 14:06:17', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-07-24 14:06:17', 'palmerg', '2018-07-24 14:06:17', 'palmerg'),
+(143, '2018-08-02 10:18:47', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-02 10:18:47', 'palmerg', '2018-08-02 10:18:47', 'palmerg'),
+(144, '2018-08-02 10:18:51', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:18:51', 'palmerg', '2018-08-02 10:18:51', 'palmerg'),
+(145, '2018-08-02 10:19:08', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:19:08', 'palmerg', '2018-08-02 10:19:08', 'palmerg'),
+(146, '2018-08-02 10:19:49', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:19:49', 'palmerg', '2018-08-02 10:19:49', 'palmerg'),
+(147, '2018-08-02 10:21:44', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:21:44', 'palmerg', '2018-08-02 10:21:44', 'palmerg'),
+(148, '2018-08-02 10:22:24', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:22:24', 'palmerg', '2018-08-02 10:22:24', 'palmerg'),
+(149, '2018-08-02 10:25:01', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:25:01', 'palmerg', '2018-08-02 10:25:01', 'palmerg'),
+(150, '2018-08-02 10:25:31', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:25:31', 'palmerg', '2018-08-02 10:25:31', 'palmerg'),
+(151, '2018-08-02 10:25:36', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-02 10:25:36', 'palmerg', '2018-08-02 10:25:36', 'palmerg'),
+(152, '2018-08-03 12:25:58', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-03 12:25:58', 'palmerg', '2018-08-03 12:25:58', 'palmerg'),
+(153, '2018-08-03 12:26:00', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-03 12:26:00', 'palmerg', '2018-08-03 12:26:00', 'palmerg'),
+(154, '2018-08-03 12:26:02', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-03 12:26:02', 'palmerg', '2018-08-03 12:26:02', 'palmerg'),
+(155, '2018-08-03 12:26:38', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-03 12:26:38', 'palmerg', '2018-08-03 12:26:38', 'palmerg'),
+(156, '2018-08-03 12:27:22', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-03 12:27:22', 'palmerg', '2018-08-03 12:27:22', 'palmerg'),
+(157, '2018-08-07 09:52:21', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-07 09:52:21', 'palmerg', '2018-08-07 09:52:21', 'palmerg'),
+(158, '2018-08-07 09:52:24', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-07 09:52:24', 'palmerg', '2018-08-07 09:52:24', 'palmerg'),
+(159, '2018-08-13 12:22:53', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-13 12:22:53', 'palmerg', '2018-08-13 12:22:53', 'palmerg'),
+(160, '2018-08-13 12:22:56', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:22:56', 'palmerg', '2018-08-13 12:22:56', 'palmerg'),
+(161, '2018-08-13 12:32:46', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:32:46', 'palmerg', '2018-08-13 12:32:46', 'palmerg'),
+(162, '2018-08-13 12:33:08', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:33:08', 'palmerg', '2018-08-13 12:33:08', 'palmerg'),
+(163, '2018-08-13 12:33:29', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:33:29', 'palmerg', '2018-08-13 12:33:29', 'palmerg'),
+(164, '2018-08-13 12:37:14', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:37:14', 'palmerg', '2018-08-13 12:37:14', 'palmerg'),
+(165, '2018-08-13 12:38:43', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-13 12:38:43', 'palmerg', '2018-08-13 12:38:43', 'palmerg'),
+(166, '2018-08-13 12:38:45', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:38:45', 'palmerg', '2018-08-13 12:38:45', 'palmerg'),
+(167, '2018-08-13 12:38:52', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:38:52', 'palmerg', '2018-08-13 12:38:52', 'palmerg'),
+(168, '2018-08-13 12:57:15', 2, 'Licenses', 'palmerg', 'views the user licenses', 1, '2018-08-13 12:57:15', 'palmerg', '2018-08-13 12:57:15', 'palmerg'),
+(169, '2018-08-23 16:32:31', 1, 'NONE', 'palmerg', 'Logged in', 1, '2018-08-23 16:32:31', 'palmerg', '2018-08-23 16:32:31', 'palmerg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_groups`
+--
+
+CREATE TABLE `admin_groups` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `access_level` int(10) UNSIGNED NOT NULL,
+  `Domain_Controller` varchar(100) NOT NULL,
+  `status` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin_groups`
+--
+
+INSERT INTO `admin_groups` (`id`, `name`, `access_level`, `Domain_Controller`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'MIS STAFF', 1, 'CN=MIS,OU=MIS Staff,DC=cokcu,DC=local', 1, '2018-03-01 10:07:33', '1', '2018-03-01 10:07:33', '1'),
+(2, 'HR Staff', 2, 'CN=HRL Group,DC=cokcu,DC=local', 1, '2018-03-01 10:07:33', '1', '2018-03-01 10:07:33', '1');
 
 -- --------------------------------------------------------
 
@@ -605,11 +856,77 @@ INSERT INTO `document_types` (`id`, `name`, `status`, `created_at`, `created_by`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  `image` text,
+  `status` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `galleries`
+--
+
+INSERT INTO `galleries` (`id`, `name`, `description`, `image`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'COK Solidity Blast Off 2018', 'Our Annual General Meeting.', '1.png', 1, '2018-08-29 10:51:39', 'palmerg', '2018-08-29 10:51:39', 'palmerg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `messages`
 --
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photos`
+--
+
+CREATE TABLE `photos` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `gallery_id` int(10) UNSIGNED NOT NULL,
+  `image` text,
+  `status` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `photos`
+--
+
+INSERT INTO `photos` (`id`, `gallery_id`, `image`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 1, '1.png', 1, '2018-08-30 13:49:34', 'palmerg', '2018-08-30 13:49:34', 'palmerg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_permissions`
+--
+
+CREATE TABLE `role_permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `status` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(100) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -674,39 +991,26 @@ CREATE TABLE `user_notifications` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_permissions`
---
-
-CREATE TABLE `user_permissions` (
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user_roles`
 --
 
 CREATE TABLE `user_roles` (
-  `id` int(11) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` varchar(8000) DEFAULT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `status` int(10) UNSIGNED NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(10) UNSIGNED NOT NULL,
+  `created_by` varchar(100) NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_by` int(10) UNSIGNED NOT NULL
+  `updated_by` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_roles`
 --
 
-INSERT INTO `user_roles` (`id`, `title`, `description`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
-(1, 'super_admin', 'for testing, this account access all rights to access everything.', 1, '2018-01-30 12:15:50', 1, '2018-01-30 12:15:50', 1),
-(2, 'admin', 'for testing, this account access access to exit and archive things.', 1, '2018-01-30 12:15:50', 1, '2018-01-30 12:15:50', 1),
-(3, 'permanet_staff', 'for testing, this account has low level access to login in and view records per their department. unable to delete or update.', 1, '2018-01-30 12:23:08', 1, '2018-01-30 12:23:08', 1),
-(4, 'contratced_staff', 'for testing, this account has access to login and view, however can not make any other changes.', 1, '2018-01-30 12:23:08', 1, '2018-01-30 12:23:08', 1);
+INSERT INTO `user_roles` (`id`, `username`, `role_id`, `status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'palmerg', 1, 1, '2018-07-23 12:12:30', 'palmerg', '2018-07-23 12:12:30', 'palmerg');
 
 -- --------------------------------------------------------
 
@@ -721,6 +1025,18 @@ CREATE TABLE `user_role_permissions` (
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `activities`
+--
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_groups`
+--
+ALTER TABLE `admin_groups`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `articles`
@@ -753,6 +1069,24 @@ ALTER TABLE `document_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `photos`
+--
+ALTER TABLE `photos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -769,6 +1103,18 @@ ALTER TABLE `user_roles`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `activities`
+--
+ALTER TABLE `activities`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
+
+--
+-- AUTO_INCREMENT for table `admin_groups`
+--
+ALTER TABLE `admin_groups`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `articles`
@@ -801,10 +1147,28 @@ ALTER TABLE `document_types`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `photos`
+--
+ALTER TABLE `photos`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user_roles`
 --
 ALTER TABLE `user_roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

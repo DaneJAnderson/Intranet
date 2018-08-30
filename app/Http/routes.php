@@ -66,6 +66,18 @@ Route::get('/documents/{id}', ['middleware' => [/*'Session_Manager'*/], function
 }]);
 
 
+Route::get('/gallery', function ()
+{
+    return view('gallery');
+});
+
+
+Route::get('/photos', function ()
+{
+    return view('photos');
+});
+
+
 Route::get('/template', function ()
 {
     return view('template');
@@ -143,6 +155,13 @@ Route::group(['prefix'=>'API'], function()
 	Route::get('/documents', [
 								'uses' => 'documentController@getDocumentByID',
 								'as' => 'getDocumentByID',
+								//'middleware' => ['Session_Manager']
+						  ]
+			    );
+
+	Route::get('/galleries', [
+								'uses' => 'galleryController@getGalleries',
+								'as' => 'getGalleries',
 								//'middleware' => ['Session_Manager']
 						  ]
 			    );

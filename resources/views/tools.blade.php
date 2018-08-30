@@ -67,7 +67,7 @@
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/License_Manager.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
 									<h5>License Manager</h5>
-									<p>License Mentainance</p>
+									<p>License Maintenance</p>
 								</div>
 							</a>
 						</span>
