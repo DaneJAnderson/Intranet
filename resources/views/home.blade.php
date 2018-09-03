@@ -178,10 +178,12 @@
 			</p>
 			
 			<div class="gallery" style="background-color: transparent;">
-				<div class="gallery-item gallery-item_add_on">JUANIQUE HOLMES (26th)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
+				<div class="gallery-item gallery-item_add_on">DENISSA NEWSOME (2nd)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
+				<div class="gallery-item gallery-item_add_on">ROSHENE BETTON (3rd)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
 
 				<div class="gallery-thumbnails" style="">
 					<!--a href="#"><img src="images/Male_worker.png" alt="" /></a-->
+					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
 					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
 				</div>
 			</div>

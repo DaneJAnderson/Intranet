@@ -72,6 +72,12 @@ Route::get('/gallery', function ()
 });
 
 
+Route::get('/gallery/{id}', ['middleware' => [/*'Session_Manager'*/], function($id)
+{    
+	return view('photos')->with('id', $id);
+}]);
+
+
 Route::get('/photos', function ()
 {
     return view('photos');
@@ -162,6 +168,14 @@ Route::group(['prefix'=>'API'], function()
 	Route::get('/galleries', [
 								'uses' => 'galleryController@getGalleries',
 								'as' => 'getGalleries',
+								//'middleware' => ['Session_Manager']
+						  ]
+			    );
+
+
+	Route::get('/photos/{id}', [
+								'uses' => 'galleryController@getPhotosGalleryByID',
+								'as' => 'getPhotosGalleryByID',
 								//'middleware' => ['Session_Manager']
 						  ]
 			    );

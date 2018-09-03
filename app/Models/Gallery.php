@@ -41,4 +41,19 @@ class Gallery extends Model
 				
 		return $Galleries;
 	}
+
+
+	/**
+	* @Description: Get all photos from a particular album
+	*
+	* @param (void)
+	*
+	* @return (JSON) - Returns active photos
+	*/
+	public function Photos($id)
+	{
+		$Photos = DB::select('CALL photos_byGalleryID_Retrieve(?);', array($id));
+				
+		return $Photos;
+	}
 }

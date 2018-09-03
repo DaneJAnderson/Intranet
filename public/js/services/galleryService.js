@@ -38,17 +38,17 @@ App.service('galleryService', ['$http', '$q', 'APP_Config', function($http, $q, 
 
 
 	/**
-	*	@Description:	Gets article by the article ID
+	*	@Description:	Gets photos by the gallery ID
 	*
-	*	@param:	(Integer) id - the ID number of the article
+	*	@param:	(Integer) id - the gallery id
 	*
-	*	@return: result (JSONOBJECT) - The article
+	*	@return: result (JSONArRAY) - The photos
 	*/
-	/*this.getArticleByID = function (article_id)
+	this.getPhotosGalleryID = function (gallery_id)
 	{
 		var deferred = $q.defer();
 		
-		$http.get(APP_Config.App_API_URL+'article/'+article_id)
+		$http.get(APP_Config.App_API_URL+'photos/'+gallery_id)
 		     .success(
 						function(data, status)
 						{
@@ -63,6 +63,6 @@ App.service('galleryService', ['$http', '$q', 'APP_Config', function($http, $q, 
 				    );
 
 		return deferred.promise; //return the promise
-    }*/
+    }
 
 }]);

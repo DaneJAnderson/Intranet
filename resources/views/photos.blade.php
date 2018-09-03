@@ -1,13 +1,28 @@
 @extends('layouts.master')
 
-@section('title', 'COK Sodality Credit Union &reg; | Home')
+@section('title', 'COK Sodality Credit Union &reg; | Photos')
 
 @section('content')
-<div n1g-controller="productController" n1g-init="product_id = @{{$product_id}};">
+
+<script>
+function Show_Photo()
+{
+	jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+			animationSpeed:'fast',
+			slideshow:5000,
+			theme:'light_rounded',
+			show_title:false,
+			overlay_gallery: false
+	});	
+}
+</script>
+
+
+
+<div ng-controller="photosController" ng-init="document_type_id = 2;">
 	<!--content-->
 	<div class="content" style="padding-top: 50px; padding-bottom: 50px;">
-	
-		<!--/ab-->
+	<!--/ab-->
 	<div class="banner_bottom">
 		<div class="container">
 			<h3 class="tittle-w3ls">Gallery</h3>
@@ -21,18 +36,17 @@
 
 				<ul class="portfolio-area">
 
-					<li class="portfolio-item2" data-id="id-0" data-type="cat-item-4">
+					<li ng-repeat="Photo in Photos" class="portfolio-item2" data-id="id-0" data-type="cat-item-4">
 						<div>
 							<span class="image-block block2 img-hover">
-							<a class="image-zoom" href="images/g1.jpg" rel="prettyPhoto[gallery]">
-							
-									<img src="images/g1.jpg" class="img-responsive" alt="Conceit">
-									<div class="port-info">
-											<h5>View Project</h5>
-											<p>Add Some Description</p>
-										</div>
-							</a>
-						</span>
+								<a class="image-zoom" href="http://<?php echo Config::get('constants.Storage_URL'); ?>images/photos/@{{Photo.image}}" rel="prettyPhoto[gallery]">
+									<img ng-src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/photos/@{{Photo.image}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" class="img-responsive" alt="Conceit" on1load="Show_Photo();">
+									<!--div class="port-info">
+										<h5>@{{Photo.name}}</h5>
+										<p>Updated: @{{utilityService.get_date_string(Gallery.created_at)}}</p>
+									</div-->
+								</a>
+							</span>
 						</div>
 					</li>
 

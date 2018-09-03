@@ -24,7 +24,7 @@
 					<li ng-repeat="Gallery in Galleries" class="portfolio-item2" data-id="id-0" data-type="cat-item-4">
 						<div>
 							<span class="image-block block2 img-hover">
-								<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery/@{{Gallery.id}}" rel="prettyPhoto[gallery]">
+								<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery/@{{Gallery.id}}?gallery_id=@{{Gallery.id}}" rel="prettyPhoto[gallery]">
 									<img ng-src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/galleries/@{{Gallery.image}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" class="img-responsive" alt="Conceit">
 									<div class="port-info">
 										<h5>@{{Gallery.name}}</h5>

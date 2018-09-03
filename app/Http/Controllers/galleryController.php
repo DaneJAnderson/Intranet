@@ -24,31 +24,31 @@ class galleryController extends Controller
 	}
 
 
-	/*public function getArticleByID(Request $request, $id)
+	public function getPhotosGalleryByID(Request $request, $id)
 	{	
 		//Variables
-		$Article = new Article();
+		$Gallery = new Gallery();
 		$Utility = new Utility();
-		$article_id = $id;
+		$gallery_id=$id;
 
-		if(isset($article_id) && $article_id!=NULL)
+		if(isset($gallery_id) && $gallery_id!=NULL)
 		{
-			if(!empty($article_id) && is_numeric($article_id))
+			if(!empty($gallery_id) && is_numeric($gallery_id))
 			{
-				$article_id=$Utility->Clean_Data($article_id);
+				$gallery_id=$Utility->Clean_Data($gallery_id);
 			}
 			else
 			{
-				throw new customValidationException("A valid numeric Article ID is required");
+				throw new customValidationException("A valid numeric Gallery ID is required");
 			}
 		}
 		else
 		{
-			throw new customValidationException("Article ID required");
+			throw new customValidationException("Gallery ID required");
 		}
 
-		$articles = $Article->Articles_by_ID($article_id);
+		$photos = $Gallery->Photos($gallery_id);
 
-		return response()->json($articles);
-	}*/
+		return response()->json($photos);
+	}
 }
