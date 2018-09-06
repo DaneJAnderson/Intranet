@@ -38,8 +38,8 @@
 			<div class="item item2">
 				<div class="container">
 					<div class="carousel-caption">
-						<h3>COK Health fair 2018</h3>
-						<!--p>You deserve the best</p>
+						<!--h3>COK Health fair 2018</h3>
+						<p>You deserve the best</p>
 						<div class="top-buttons">
 							<div class="bnr-button">
 								<a class="act" href="single.html">Read More</a>
@@ -56,7 +56,7 @@
 				<div class="container">
 					<div class="carousel-caption">
 						<!--h3>Giving back you the commity</h3-->
-						<p>Giving back to the community</p>
+						<p>Blast Off 2018</p>
 						<!--div class="top-buttons">
 							<div class="bnr-button">
 								<a class="act" href="single.html">Read More</a>
@@ -169,7 +169,7 @@
 
 
 	<!--/banner_bottom-->
-	<div class="banner_bottom bgimg" style="background-color: #ffb500; padding-top: 20px; padding-bottom: 20px;">
+	<div ng-if="Birthdays.length>0" class="banner_bottom bgimg" style="background-color: #ffb500; padding-top: 20px; padding-bottom: 20px;">
 		<div class="banner_bottom_in">
 			<h3 class="tittle-w3ls we" style="color: white;">Staff Birthday Listing</h3>
 
@@ -178,13 +178,18 @@
 			</p>
 			
 			<div class="gallery" style="background-color: transparent;">
-				<div class="gallery-item gallery-item_add_on">DENISSA NEWSOME (2nd)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
-				<div class="gallery-item gallery-item_add_on">ROSHENE BETTON (3rd)<br/><br/><img src="images/Female_worker.png" alt="" /></div>
+				<div ng-repeat="Birthday in Birthdays" class="gallery-item gallery-item_add_on">
+					@{{Birthday.first_name+' '+Birthday.last_name}}
+					<br/>
+					<br/>
+					<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" ng-src="@{{getBirthdayImage(Birthday.image, Birthday.sex)}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" alt="" />
+				</div>
 
 				<div class="gallery-thumbnails" style="">
-					<!--a href="#"><img src="images/Male_worker.png" alt="" /></a-->
-					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
-					<a href="#"><img src="images/Female_worker.png" alt="" /></a>
+					<a ng-repeat="Birthday in Birthdays" href="#">
+						<img ng-if="Birthday.sex==0" src="images/Male_worker.png" alt="" />
+						<img ng-if="Birthday.sex==1" src="images/Female_worker.png" alt="" />
+					</a>
 				</div>
 			</div>
 		</div>

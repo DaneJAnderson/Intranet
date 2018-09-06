@@ -13,7 +13,7 @@ App.constant('APP_Config',
     App_Version: 1.0,
     App_URL    : 'http://intranew/intranet/public/',
 	App_API_URL: 'http://intranew/intranet/public/API/',
-	App_Storage_URL: 'http://intranew/intranet/app/public/',
+	App_Storage_URL: 'http://intranew/intranet/storage/app/public/',
 	Debug: true
 });
 

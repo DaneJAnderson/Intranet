@@ -41,22 +41,22 @@
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Home</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Notice Board</a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery">Gallery</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Contact</a></li>
 						</ul>
 					</div>
 					<div class="col-md-3 sign-gd flickr-post">
 						<h4>Our <span>Works Place</span></h4>
 						<ul>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/10_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/12_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/15_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/19_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/11_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/8_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/7_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/4_1.png" alt=" " class="img-responsive" /></a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/6_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/10_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/12_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/15_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/19_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/11_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/8_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/7_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/4_1.png" alt=" " class="img-responsive" /></a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>gallery"><img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/6_1.png" alt=" " class="img-responsive" /></a></li>
 						</ul>
 					</div>
 					<div class="col-md-5 sign-gd-two">

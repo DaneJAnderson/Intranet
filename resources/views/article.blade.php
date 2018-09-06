@@ -7,7 +7,7 @@
 <div ng-controller="articleController" ng-init="id = {{$id}};">
 	<!--content-->
 	<div class="content">
-		<div class="banner_inner_con">
+		<div class="banner_inner_con" style="background: url(../images/banner2_.jpg)">
 		</div>
 		<div class="services-breadcrumb">
 			<div class="inner_breadcrumb">

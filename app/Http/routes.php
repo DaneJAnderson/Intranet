@@ -179,6 +179,14 @@ Route::group(['prefix'=>'API'], function()
 								//'middleware' => ['Session_Manager']
 						  ]
 			    );
+
+
+	Route::get('/current_birthdays', [
+								'uses' => 'staffdetailsController@getCurrentBirthdays',
+								'as' => 'getCurrentBirthdays',
+								//'middleware' => ['Session_Manager']
+						  ]
+			    );
 			  
 	Route::post('/login', [
 								'uses' => 'userController@postLogin',

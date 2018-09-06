@@ -242,6 +242,35 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		
 		return deferred.promise; //return the promise
     }
+
+
+    /**
+	*	@Description:	Gets users with current birthdays
+	*
+	*	@param:	username (Void) - 
+	*
+	*	@return: result (JSONARRAY) - Users
+	*/
+	this.getCurrentBirthdays = function ()
+	{
+		var deferred = $q.defer();
+		
+		$http.get(APP_Config.App_API_URL+'current_birthdays')
+		     .success(
+						function(data, status)
+						{
+							return deferred.resolve({"status":status, "data":data});
+						}
+					  )
+		   	  .error(
+						function(data, status)
+						{
+							return deferred.resolve({"status":status, "data":data});
+						}
+				    );
+		
+		return deferred.promise; //return the promise
+    }
 	
 	
 }]);

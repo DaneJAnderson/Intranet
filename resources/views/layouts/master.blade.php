@@ -81,6 +81,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Angular Services
 ============================================ -->
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/services/utilityService.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/services/userService.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/services/articleService.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/services/documentsService.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/services/galleryService.js"></script>
