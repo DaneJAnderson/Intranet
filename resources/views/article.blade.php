@@ -25,7 +25,7 @@
 				<div class="col-md-9 technology-left">
 					<div class="business">
 						<div class=" blog-grid2">
-							<img ng-if="Article.image == null" src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/banner2.jpg" class="img-responsive" alt=""/>
+							<img ng-if="Article.image == null" src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/banner2_.jpg" class="img-responsive" alt=""/>
 							<img ng-src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/articles/@{{Article.image}}" class="img-responsive" alt=""/>
 							<div class="blog-text">
 								<h5>@{{Article.title}}</h5>

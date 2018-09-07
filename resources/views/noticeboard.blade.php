@@ -34,6 +34,24 @@
 				<div>
 					<!--img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/thumb_tac.png" class="" alt="Conceit" style="z-index: 10; width: 50px; height: 50px; background-color: transparent; padding: 0px; margin-bottom: -50px; margin-top: 0px; left: 250px;"-->
 					<span class="image-block">
+					<a class="image-zoom" href="http://<?php echo Config::get('constants.Storage_URL'); ?>documents/pdf/Financial_Investigations_Division_Advisory.pdf" target="_blank" rel="prettyPhoto[gallery]">
+						<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Financial_Investigations_Division_Advisor.png" class="img-responsive" alt="Conceit" style="background-color: white;">
+						<div class="port-info" style="background-color: transparent;">
+							<h5 style="color: #ffb500; font-family: DK_Cool_Crayon;">Financial Investigations Division Ad...</h5>
+							<p style="color: white; font-family: DK_Cool_Crayon;">
+								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/clock_white.png" class="" alt="Conceit" style="width: 25px; height: 25px; background-color: transparent; padding: 0px;">
+								September 7, 2018
+							</p>
+						</div>
+					</a>
+				</span>
+				</div>
+			</li>
+
+			<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
+				<div>
+					<!--img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/thumb_tac.png" class="" alt="Conceit" style="z-index: 10; width: 50px; height: 50px; background-color: transparent; padding: 0px; margin-bottom: -50px; margin-top: 0px; left: 250px;"-->
+					<span class="image-block">
 					<a class="image-zoom" href="http://intranew/COK_HR_MIS/public/" target="_blank" rel="prettyPhoto[gallery]">
 						<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/Personal_informaption.png" class="img-responsive" alt="Conceit" style="background-color: white;">
 						<div class="port-info" style="background-color: transparent;">
