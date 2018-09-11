@@ -63,7 +63,7 @@
 					<li class="portfolio-item2" data-id="id-0" data-type="cat-item-4" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block img-hover">
-							<a class="image-zoom" href="http://192.168.110.239/License_Manager/public/login" target="_blank" rel="prettyPhoto[gallery]">
+							<a class="image-zoom" href="http://intranew/License_Manager/public/" target="_blank" rel="prettyPhoto[gallery]">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/License_Manager.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
 									<h5>License Manager</h5>

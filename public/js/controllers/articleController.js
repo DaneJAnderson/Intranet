@@ -63,6 +63,9 @@ App.controller('articleController', ['$scope', '$http', '$rootScope', 'articleSe
 			if(data.status == 200)
 			{
 				$scope.Article = data.data;
+
+				$('#article_content').html(data.data.content);
+				//$('#article_content').html($('#article_content').text());
 			}
 			else if(data.status == 419)
 			{

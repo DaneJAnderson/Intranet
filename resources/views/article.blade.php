@@ -29,8 +29,15 @@
 							<img ng-src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/articles/@{{Article.image}}" class="img-responsive" alt=""/>
 							<div class="blog-text">
 								<h5>@{{Article.title}}</h5>
-								<p>
+								<p id="article_content">
 									@{{Article.content}}
+								</p>
+								<p style="color: black; ">
+									<span class="glyphicon glyphicon-time">
+									@{{utilityService.get_date_string(Article.updated_at)}}
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span class="glyphicon glyphicon-user">
+									@{{Article.created_by}}
 								</p>
 							</div>
 						</div>
