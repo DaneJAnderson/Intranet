@@ -181,6 +181,9 @@
 				<div ng-repeat="Birthday in Birthdays" class="gallery-item gallery-item_add_on">
 					@{{Birthday.first_name+' '+Birthday.last_name}}
 					<br/>
+					<font style="font-size: 14px;">
+						department: @{{Birthday.department}}
+					</font>
 					<br/>
 					<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" ng-src="@{{getBirthdayImage(Birthday.image, Birthday.sex)}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" alt="" />
 				</div>

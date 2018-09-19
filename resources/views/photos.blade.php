@@ -36,11 +36,11 @@ function Show_Photo()
 
 				<ul class="portfolio-area">
 
-					<li ng-repeat="Photo in Photos" class="portfolio-item2" data-id="id-0" data-type="cat-item-4">
+					<li ng-repeat="Photo in Photos" class="portfolio-item2" data-id="id-0" data-type="cat-item-4" style="margin-bottom: 10px;">
 						<div>
 							<span class="image-block block2 img-hover">
 								<a class="image-zoom" href="http://<?php echo Config::get('constants.Storage_URL'); ?>images/photos/@{{Photo.image}}" rel="prettyPhoto[gallery]">
-									<img ng-src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/photos/@{{Photo.image}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" class="img-responsive" alt="Conceit" on1load="Show_Photo();">
+									<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/photo_loading.gif" photo_address="http://<?php echo Config::get('constants.Storage_URL'); ?>images/photos/@{{Photo.image}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" class="img-responsive photo" alt="Conceit" onload="Show_Photo();">
 									<!--div class="port-info">
 										<h5>@{{Photo.name}}</h5>
 										<p>Updated: @{{utilityService.get_date_string(Gallery.created_at)}}</p>
@@ -63,4 +63,8 @@ function Show_Photo()
 	<!--End content-->
 
 </div>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/jquery.quicksand.js" type="text/javascript"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/script.js" type="text/javascript"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/jquery.prettyPhoto.js" type="text/javascript"></script>
 @endsection

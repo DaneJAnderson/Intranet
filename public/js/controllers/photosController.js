@@ -1,4 +1,4 @@
-App.controller('photosController', ['$scope', '$http', '$rootScope', 'galleryService', function($scope, $http, $rootScope, galleryService)
+App.controller('photosController', ['$scope', '$http', '$rootScope', 'galleryService', '$timeout', function($scope, $http, $rootScope, galleryService, $timeout)
 {
 	$rootScope.utilityService.console_log("START - photosController");
 
@@ -30,7 +30,12 @@ App.controller('photosController', ['$scope', '$http', '$rootScope', 'gallerySer
 			if(data.status == 200)
 			{
 				$scope.Photos = data.data;
-				//Display_Album();
+
+				$timeout( function(){
+		            lazy_load_images();
+		        }, 5000 );
+				
+				//window.setTimeout(lazy_load_images(), 500);
 			}
 			else if(data.status == 419)
 			{
