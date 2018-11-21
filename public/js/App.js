@@ -14,7 +14,7 @@ App.constant('APP_Config',
     App_URL    : 'http://intranew/intranet/public/',
 	App_API_URL: 'http://intranew/intranet/public/API/',
 	App_Storage_URL: 'http://intranew/intranet/storage/app/public/',
-	Debug: true
+	Debug: false
 });
 
 App.config(['$stateProvider', '$urlRouterProvider', 'APP_Config', function($stateProvider, $urlRouterProvider, APP_Config)

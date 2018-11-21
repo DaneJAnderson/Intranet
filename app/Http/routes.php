@@ -90,6 +90,12 @@ Route::get('/template', function ()
 });
 
 
+Route::get('/ceo_message', function ()
+{
+    return view('ceo_message');
+});
+
+
 Route::get('/help', function ()
 {
 	$routeCollection = Route::getRoutes();

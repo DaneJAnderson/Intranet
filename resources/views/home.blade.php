@@ -105,15 +105,14 @@
 			<!--/banner_bottom-->
 			<div class="banner_bottom" style="">
 				<div class="banner_bottom_in" style="margin-left: auto; margin-right: auto; width: 90%;">
-					<h3 class="tittle-w3ls we">COK colourfully celebrated black history, reggae and Jamaica.</h3>
+					<h3 class="tittle-w3ls we">COMING SOON (Home Folders)</h3>
 
 					<p>
-						It was a beautiful affair at the Cross Roads branch of COK Sodality Co-operative Credit Union last Friday as staff members - including.
-						<a href="http://www.loopjamaica.com/taxonomy/term/56731"> Read on loop</a>
+						In an effort to improve productivity and make your work easier, MIS will be introducing Personal Home Folders for all staff. More information will be provided in short order.
 					</p>
 
 
-					<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/GsBZBH7Qc1.jpg" class="img-responsive" alt="">
+					<img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/others/Cloud_Storage_1280x727.png" class="img-responsive" alt="">
 				</div>
 			</div>
 			<!--//banner_bottom-->

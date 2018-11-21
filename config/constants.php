@@ -29,5 +29,5 @@ return
 	
 	'Cache_timeout' => 0,
 	
-	'http_or_https' => 'https://',
+	'http_or_https' => 'http://',
 ];
