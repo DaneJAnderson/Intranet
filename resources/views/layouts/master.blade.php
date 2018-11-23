@@ -75,6 +75,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/documentTypesController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/galleryController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/photosController.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/documentsSubtypesController.js"></script>
 <!-- Angular Factories
 ============================================ -->
 <!--script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/factories/eventsFactory.js"></script-->

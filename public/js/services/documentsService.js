@@ -42,5 +42,27 @@ App.service('documentsService', ['$http', '$q', 'APP_Config', function($http, $q
 		
 		return deferred.promise; //return the promise
     }
+
+
+    this.getDocumentBySubTypes = function (id, type)
+	{
+		var deferred = $q.defer();
+		
+		$http.get(APP_Config.App_API_URL+'documents_by_subtypes?type='+id+'&subtype='+type)
+		   .success(
+				function(data, status)
+				{
+					return deferred.resolve({"status":status, "data":data});
+				}
+			)
+			.error(
+				function(data, status)
+				{
+					return deferred.resolve({"status":status, "data":data});
+				}
+			);
+		
+		return deferred.promise; //return the promise
+    }
 	
 }]);

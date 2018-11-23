@@ -56,4 +56,19 @@ class Document extends Model
 		
 		return $Documents;
 	}
+
+
+	/**
+	* @Description: Get the article by subteypes
+	*
+	* @param (Integer) ID - The article ID
+	*
+	* @return (JSONOBJECT) - Returns article items or NULL
+	*/
+	public function Document_by_SubTypes($id, $subtype)
+	{
+		$Documents = DB::select('CALL documents_bySubType_Retrieve(?,?);', array($id, $subtype));
+		
+		return $Documents;
+	}
 }

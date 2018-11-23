@@ -66,6 +66,17 @@ Route::get('/documents/{id}', ['middleware' => [/*'Session_Manager'*/], function
 }]);
 
 
+Route::get('/documents/{id}/{subtype}', ['middleware' => [/*'Session_Manager'*/], function($id, $subtype)
+{
+	$data = [
+    	'id' => $id,
+    	'subtype' => $subtype,
+	];
+
+	return view('documents_by_subtypes')->with('data', $data);
+}]);
+
+
 Route::get('/gallery', function ()
 {
     return view('gallery');
@@ -167,6 +178,13 @@ Route::group(['prefix'=>'API'], function()
 	Route::get('/documents', [
 								'uses' => 'documentController@getDocumentByID',
 								'as' => 'getDocumentByID',
+								//'middleware' => ['Session_Manager']
+						  ]
+			    );
+
+	Route::get('/documents_by_subtypes', [
+								'uses' => 'documentController@getDocumentBySubType',
+								'as' => 'getDocumentBySubType',
 								//'middleware' => ['Session_Manager']
 						  ]
 			    );
