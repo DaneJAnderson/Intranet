@@ -19,7 +19,7 @@
 			<div class="item active">
 				<div class="container">
 					<div class="carousel-caption">
-						<h3>Vision</h3>
+						<!--h3>Vision</h3>
 						<p>
 							To be the leader in all markets we serve; by being a member-focused, financially sound, profitable and <b style="color: #ffb500;">technology-driven</b> organization with a highly competent and motivated team.
 						</p>
@@ -31,7 +31,7 @@
 								<a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about" class="two scroll ">About COK</a>
 							</div>
 							<div class="clearfix"> </div>
-						</div>
+						</div-->
 					</div>
 				</div>
 			</div>
