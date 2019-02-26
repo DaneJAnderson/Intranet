@@ -2,7 +2,7 @@
 <div class="header" n1g-controller="headerController">
 	<div class="top_header" id="home">
 		<!-- Fixed navbar -->
-		<nav class="navbar navbar-default navbar-fixed-top" style="background-image: url('images/strip.png');">
+		<nav class="navbar navbar-default navbar-fixed-top" style1="background-image: url('images/strip.png');">
 			<div class="nav_top_fx_w3ls_agileinfo">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,16 +25,16 @@
 
 						</ul>
 						<ul class="nav navbar-nav">
-							<li class="" style="background-color: #ffb500;"><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Home</a></li>
-							<li style="background-color: #ffb500;"><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
-							<li style="background-color: #ffb500;"><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
-							<li style="background-color: #ffb500;"><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
-							<li class="dropdown" style="background-color: #ffb500;">
+							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Home</a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
+							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Links <span class="caret"></span></a>
 								<ul class="dropdown-menu">
-									<li style="background-color: #ffb500;"><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>document_types">Documents</a></li>
-									<li style="background-color: #ffb500;"><a href="http://intranew/queuing_system" target="_blank">Queueing System</a></li>
-									<li style="background-color: #ffb500;"><a href="https://mail.cokcu.com" target="_blank">WebMail</a></li>
+									<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>document_types">Documents</a></li>
+									<li><a href="http://intranew/queuing_system" target="_blank">Queueing System</a></li>
+									<li><a href="https://mail.cokcu.com" target="_blank">WebMail</a></li>
 
 
 								</ul>
