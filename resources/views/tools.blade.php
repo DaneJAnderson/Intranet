@@ -91,7 +91,7 @@
 					<li class="portfolio-item2" data-id="id-1" data-type="cat-item-2" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
-							<a class="image-zoom" href="http://192.168.110.239/Meeting/" target="_blank" rel="prettyPhoto[gallery]">
+							<a class="image-zoom" href="http://intranew/Meeting/" target="_blank" rel="prettyPhoto[gallery]">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/meeting_scheduler.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
 									<h5>Meeting Scheduler</h5>
