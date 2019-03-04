@@ -46,7 +46,7 @@
 						</div>
 					</li>
 
-					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
+					<!--li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
 							<a class="image-zoom" href="http://intranew/Deferred_Share_Mini_App/" target="_blank" rel="prettyPhoto[gallery]">
@@ -58,7 +58,7 @@
 							</a>
 						</span>
 						</div>
-					</li>
+					</li-->
 
 					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
