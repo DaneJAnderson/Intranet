@@ -46,19 +46,19 @@
 						</div>
 					</li>
 
-					<!--li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
+					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
-							<a class="image-zoom" href="http://intranew/Deferred_Share_Mini_App/" target="_blank" rel="prettyPhoto[gallery]">
+							<a class="image-zoom" href="http://intranew/Loan_Sale_Promotion/" target="_blank" rel="prettyPhoto[gallery]">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/shares.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
-									<h5>Deferred Shares</h5>
-									<p>Deferred Share Mini App</p>
+									<h5>Loan Tracker</h5>
+									<p>To Track promotional loans</p>
 								</div>
 							</a>
 						</span>
 						</div>
-					</li-->
+					</li>
 
 					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
