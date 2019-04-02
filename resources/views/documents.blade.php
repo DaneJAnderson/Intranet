@@ -19,6 +19,9 @@
 		<br/>
 		<div class="row">
 			<div class="col-xs-12 col-md-3 documents" ng-repeat="document in documents" ng-if="filterDocuments(document.name)" style="height: 150px;">
+				<a href="http://<?php echo Config::get('constants.Storage_URL'); ?>documents/@{{document.file}}" download>
+					<span class="glyphicon glyphicon-download" style="float: right; font-weight: bold; font-size: 24px; margin-top: 10px;"></span></p>
+				</a>
 				<center>
 					<a ng-if="document.format != 5" href="http://<?php echo Config::get('constants.Storage_URL'); ?>documents/@{{document.file}}" style="text-decoration: none;">
 						<img ng-if="document.format == 1" ng-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/documents_types/pdf.png" style="width: 100px; height: 100px;"/>
