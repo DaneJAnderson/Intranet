@@ -74,6 +74,21 @@
 						</div>
 					</li>
 
+
+					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
+						<div>
+							<span class="image-block">
+							<a class="image-zoom" href="http://intranew/Petty_Cash_App" target="_blank" rel="prettyPhoto[gallery]">
+								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/petty_cash_640x480.jpg" class="img-responsive" alt="Conceit">
+								<div class="port-info">
+									<h5>Facilities Petty Cash</h5>
+									<p>Allow staff to request petty cash</p>
+								</div>
+							</a>
+						</span>
+						</div>
+					</li>
+
 					<li class="portfolio-item2" data-id="id-0" data-type="cat-item-4" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block img-hover">

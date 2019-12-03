@@ -1,5 +1,5 @@
 <!--header-->
-<div class="header" n1g-controller="headerController">
+<div class="header " n1g-controller="headerController">
 	<div class="top_header" id="home">
 		<!-- Fixed navbar -->
 		<nav class="navbar navbar-default navbar-fixed-top" style1="background-image: url('images/strip.png');">
@@ -25,7 +25,7 @@
 
 						</ul>
 						<ul class="nav navbar-nav">
-							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>">Home</a></li>
+							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>" style="">Home!</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>

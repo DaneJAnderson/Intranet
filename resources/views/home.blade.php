@@ -15,7 +15,7 @@
 			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
 			<!--li data-target="#myCarousel" data-slide-to="3" class=""></li-->
 		</ol>
-		<div class="carousel-inner" role="listbox">
+		<div class="carousel-inner" role="listbox"> 
 			<div class="item active">
 				<div class="container">
 					<div class="carousel-caption">
@@ -101,7 +101,7 @@
 	<!--//banner -->
 
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-9"> 
 			<!--/banner_bottom-->
 			<div class="banner_bottom" style="">
 				<div class="banner_bottom_in" style="margin-left: auto; margin-right: auto; width: 90%;">

@@ -21,6 +21,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta name="description" content="" />
 <!--meta  tag-->
 <!--css-->
+<!-- <link rel="stylesheet" href="/css/app.css"> -->
+
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/All_Styles(COK_Intranet).css" rel="stylesheet" type="text/css">
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -49,6 +51,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <!-- JS Files
 ============================================ -->
+
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/All_Scripts(COK_Intranet).js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/easing.js"></script>
 <!--script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/move-top.js"></script-->
@@ -59,8 +62,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/semantic.ui.min.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/prism.min.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/pignose.gallery.min.js"></script>
-
-
 
 <!-- Angular App
 ============================================ -->
@@ -92,6 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <title> @yield('title') </title>
 </head>
 <body ng-app="App">
+
 	<!--div ui-view></div-->
 	<div style="display:none">
 	<!--?php

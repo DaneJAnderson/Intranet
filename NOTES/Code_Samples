@@ -1,0 +1,17 @@
+1) to validate a request :  request()->validate([
+                            'caption' => 'reuired'
+                            'image' => ['required', 'image'] 
+                                ]);
+
+2) request('image)->store('uploads', 'public')
+    auth()->user()->posts()->yourfunction();
+ 
+
+4) @foreach($array as $item)
+    @endforeach
+
+5) $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+
+6) 
+
+  

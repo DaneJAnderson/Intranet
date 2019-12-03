@@ -5,7 +5,9 @@
 @section('content')
 <div n1g-controller="homeController">
 <!--content-->
+
 <div class="inner_sec_info_wthree_agile" style="padding-top: 100px; padding-bottom: 100px;">
+
 	<h3 class="tittle-w3ls">About US</h3>
 	<div class="help_full">
 		<div class="col-md-6 banner_bottom_grid help">

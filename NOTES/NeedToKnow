@@ -1,0 +1,12 @@
+
+1) for put request : @method
+
+2) for secure uploads : @csrf 
+
+3)  storage:link
+
+4) php aritsan tinker Post::truncate();
+
+5) intervention image : Image::make(public_path("storage/{$imagePath}"}))->fit( $width, $height);
+
+6) Route Model Binding:   yourFuncton(\App\Post $post){}

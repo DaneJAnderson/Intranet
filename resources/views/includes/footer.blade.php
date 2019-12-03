@@ -1,11 +1,11 @@
 <!--footer-->
-<div class=footer" n1g-controller="headerController">
+<div class="footer" n1g-controller="headerController">
 	<!-- footer -->
 	<div class="footer">
 		<div class="footer_inner_info_w3ls_agileits">
 			<div class="col-md-3 footer-left">
 				<h2><a href="index.html"><i class="fa fa-clone" aria-hidden="true"></i> COK Sodality </a></h2>
-				<p>OK Sodality Co-operative Credit Union Ltd. (COK), formerly City of Kingston Co-Operative Credit Union Ltd., was incorporated in October 1967 to serve the financial needs of its members in Kingston and St. Andrew.</p>
+				<p>COK Sodality Co-operative Credit Union Ltd. (COK), formerly City of Kingston Co-Operative Credit Union Ltd., was incorporated in October 1967 to serve the financial needs of its members in Kingston and St. Andrew.</p>
 				<ul class="social-nav model-3d-0 footer-social social two">
 					<li>
 						<a href="https://www.facebook.com/pages/COK-Sodality-Co-operative-Credit-Union/336374824365" class="facebook">
