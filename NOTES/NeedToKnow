@@ -1,4 +1,5 @@
 
+
 1) for put request : @method
 
 2) for secure uploads : @csrf 
@@ -10,3 +11,9 @@
 5) intervention image : Image::make(public_path("storage/{$imagePath}"}))->fit( $width, $height);
 
 6) Route Model Binding:   yourFuncton(\App\Post $post){}
+
+7) view variables : compact('post' );
+
+8) php artisan make:policy ProfilePolocy -m Profile 
+
+9)  php artisan make:middleware Cors

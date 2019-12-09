@@ -1,0 +1,26 @@
+To get Documents: 
+1) in MYSQL stores Procedures: documents_byType_Retrieve
+2) Controller's getDocumentByID: creates Model instance and calls Document_by_Types
+3) Document_by_Types get SQL data for procedure documents_byType_Retrieve
+4) Returns Data to documents view.
+
+documents_byType_Retrieve Script:
+
+
+	START TRANSACTION;
+    	SELECT documents.id, documents.name, documents.type, documents.file, documents.format
+		FROM documents
+        LEFT JOIN document_types
+        ON documents.type = document_types.id
+        WHERE documents.type = type_id
+        AND documents.status = 1
+        AND documents.main_category = 1
+        AND document_types.status = 1
+        ORDER BY documents.name ASC;
+
+INSERT INTO  cok_intranet.documents (documents.name, documents.type, documents.file, documents.format, documents.status, documents.main_category, documents.created_by, documents.updated_by)
+VALUES ("Volunteers' Compensation Policy",8,'PDF/Volunteers_Compensation_Policy_0719.pdf',1,1,1,1,1);
+
+Staff_Loan_Policy_and_Procedures_012019
+
+Volunteers_Compensation_Policy_0719

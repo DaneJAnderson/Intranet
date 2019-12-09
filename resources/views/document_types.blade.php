@@ -7,7 +7,7 @@
 	<!--content-->
 	<div class="content">
 		<br/>
-		<div class="documents_header">
+		<div class="documents_header documentTypeHead shadow-lg">
 			<center>
 				Document types
 			</center>
@@ -16,7 +16,7 @@
 		<br/>
 		<div class="row">
 			<div class="col-xs-12 col-md-4 documents" ng-repeat="document_type in document_types" ng-click="goToDocuments(document_type.id)" style="height: 150px;">
-				<center>
+				<center>					
 					<img ng-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/documents_types/clipboard.png" style="width: 100px; height: 100px;"/>
 					<br/>
 					<font style="font-weight: bold; margin-left: -10px;">

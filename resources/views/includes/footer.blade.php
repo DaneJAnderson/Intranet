@@ -99,11 +99,11 @@
 						</div>
 					</div>
 
-					<div class="clearfix"></div>
+					<div class="clearfix "></div>
 				</div>
 			</div>
-			<div class="clearfix"></div>
-			<p class="copy-right">&copy 2018 Conceit. All rights reserved COK Sodality Credit Union | Developed by <a href="http://www.dynamicevolution.technologies">Dynamic Evolution Studios</a> | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+			<div class="clearfix "></div>
+			<p class="copy-right">&copy 2020 Conceit. All rights reserved COK Sodality Credit Union | Developed by <a href="http://www.dynamicevolution.technologies">Dynamic Evolution Studios</a> | Design by <a href="http://w3layouts.com/">W3layouts.</a> Re-Engineered and Redesigned by <b class="text-info">Dane J. Anderson</b>. Property of COK Sodality Credit Union.  </p>
 		</div>
 	</div>
 	<!-- //footer -->

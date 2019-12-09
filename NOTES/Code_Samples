@@ -12,6 +12,12 @@
 
 5) $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
 
-6) 
+6) {{ old('nameField') }}  // re-add form fields values
+
+7) @can ('update', $user->profile)
+        for authorized users
+    @endcan 
+
+8)   
 
   

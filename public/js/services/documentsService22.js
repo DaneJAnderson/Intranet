@@ -1,27 +1,29 @@
 
 App.service('documentsService', ['$http', '$q', 'APP_Config', function($http, $q, APP_Config)
 {
+	 	
+	 //$http.defaults.headers.common["Content-Type"] = "text/plain";
+	 //$http.defaults.headers.common["Access-Control-Allow-Origin"] =  "*" ;
+
     this.getDocumentTypes = function ()
 	{
 		var deferred = $q.defer();
 		
 		
 		$http.get(APP_Config.App_API_URL+'document_types')
-		   //.success(
-		   .then(
-				function(data)
+		   .success(		   
+				function(data, status)
 				{
-					
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			)
-			.catch(
-				function(data)
+			.error(
+				function(data, status)
 				{
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			);
-		console.log(deferred.promise);
+		
 		return deferred.promise; //return the promise
     };
 	
@@ -31,16 +33,16 @@ App.service('documentsService', ['$http', '$q', 'APP_Config', function($http, $q
 		var deferred = $q.defer();			
 		
 		$http.get(APP_Config.App_API_URL+'documents?type='+id)
-		   .then(
-				function(data)
+		   .success(
+				function(data, status)
 				{
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			)
-			.catch(
-				function(data)
+			.error(
+				function(data, status)
 				{
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			);
 		
@@ -54,16 +56,16 @@ App.service('documentsService', ['$http', '$q', 'APP_Config', function($http, $q
 		 
 
 		$http.get(APP_Config.App_API_URL+'documents_by_subtypes?type='+id+'&subtype='+type)
-		   .then(
+		   .success(
 				function(data, status)
 				{
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			)
 			.error(
-				function(data)
+				function(data, status)
 				{
-					return deferred.resolve({"status":data.status, "data":data.data});
+					return deferred.resolve({"status":status, "data":data});
 				}
 			);
 		
@@ -71,13 +73,3 @@ App.service('documentsService', ['$http', '$q', 'APP_Config', function($http, $q
     };
 	
 }]);
-
-
-
-
-
-
-
-	 	
-	 //$http.defaults.headers.common["Content-Type"] = "text/plain";
-	 //$http.defaults.headers.common["Access-Control-Allow-Origin"] =  "*" ;

@@ -4,19 +4,21 @@
 
 @section('content')
 <div ng-controller="documentsController" ng-init="document_type_id = {{$id}};" style="margin-left: 100px; margin-top: 100px; margin-right: 100px;">
+	
 	<!--content-->
 	<div class="content">
 		<br/>
-		<div class="documents_header">
+		<div class="documents_header documentTypeHead shadow-lg">
 			<center>
 				Documents
 			</center>
 		</div>
 		<br/>
 		<center>
-			<input type="text" ng-model="search_field" class="search" placeholder="search"/>
+			<input type="text" ng-model="search_field" class="search documentSearch" placeholder="   Search.."/>
 		</center>
-		<br/>
+		<br/><br/>
+		<br/><br/>
 		<div class="row">
 			<div class="col-xs-12 col-md-3 documents" ng-repeat="document in documents" ng-if="filterDocuments(document.name)" style="height: 150px;">
 				<a href="http://<?php echo Config::get('constants.Storage_URL'); ?>documents/@{{document.file}}" download>
@@ -45,4 +47,5 @@
 	</div>
 	<!--End content-->
 </div>
+<br/><br/>
 @endsection

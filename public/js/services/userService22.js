@@ -34,16 +34,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'login_status')
-		     .then(
-						function(data)
+		     .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.status});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.status});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -70,16 +70,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 							'Content-Type': undefined
 						}
 					})
-			 .then(
-						function(data)
+			 .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					)
-		     .catch(
-						function(data)
+		     .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				   );
 		
@@ -111,16 +111,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 							'Content-Type': undefined
 						}
 					})
-			 .then(
-						function(data)
+			 .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					)
-		     .catch(
-						function(data)
+		     .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				   );
 		
@@ -140,16 +140,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'getUser?username='+username)
-		     .then(
+		     .success(
 						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -169,16 +169,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'getUsers')
-		     .then(
-						function(data)
+		     .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -198,16 +198,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'login_status')
-		     .then(
+		     .success(
 						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -227,16 +227,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'getLicenseUserReportByUsername?username='+username)
-		     .then(
-						function(data)
+		     .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -256,16 +256,16 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'current_birthdays')
-		     .then(
-						function(data)
+		     .success(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		

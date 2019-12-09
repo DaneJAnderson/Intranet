@@ -1,0 +1,29 @@
+.documentTypeHead {
+
+   background:  rgb(252, 236, 184);
+   border: 1px solid rgb(255, 230, 149);
+   color: #000;
+   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff,
+    -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.documents:hover {
+
+    background-color: rgb(252, 236, 184);
+    color: black;
+}
+
+.documents {
+
+    padding-top: 15px;
+    border-radius: 10px;
+}
+
+.documentSearch {
+
+    outline: 0;
+    padding-left: 20px;
+    border: 1px solid rgb(255, 221, 109);
+    float: right;    
+
+}

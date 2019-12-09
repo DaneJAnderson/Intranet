@@ -20,16 +20,16 @@ App.service('articleService', ['$http', '$q', 'APP_Config', function($http, $q, 
 		var deferred = $q.defer();
 		
 		$http.get(APP_Config.App_API_URL+'last_articles')
-		     .then(
-						function(data)
-						{							
-							return deferred.resolve({"status":data.status, "data":data.data});
+		     .success(
+						function(data, status)
+						{
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
-		   	  .catch(
-						function(data)
+		   	  .error(
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 		
@@ -50,15 +50,15 @@ App.service('articleService', ['$http', '$q', 'APP_Config', function($http, $q, 
 		
 		$http.get(APP_Config.App_API_URL+'article/'+article_id)
 		     .success(
-						function(data)
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 					  )
 		   	  .error(
-						function(data)
+						function(data, status)
 						{
-							return deferred.resolve({"status":data.status, "data":data.data});
+							return deferred.resolve({"status":status, "data":data});
 						}
 				    );
 

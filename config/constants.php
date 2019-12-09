@@ -1,6 +1,7 @@
 <?php
 
-$host = $_SERVER['HTTP_HOST'];// set to $_SERVER['SERVER_ADDR'] for local testing and $_SERVER['HTTP_HOST'] for live.
+ $host = $_SERVER['HTTP_HOST'];// set to $_SERVER['SERVER_ADDR'] for local testing and $_SERVER['HTTP_HOST'] for live.
+// $host = $_SERVER['SERVER_ADDR'];
 
 return
 [

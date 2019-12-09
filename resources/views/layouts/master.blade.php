@@ -26,6 +26,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/All_Styles(COK_Intranet).css" rel="stylesheet" type="text/css">
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/header.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/document.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/font-awesome.css" rel="stylesheet">
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/prettyPhoto.css" rel="stylesheet">
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/prism.css" rel="stylesheet">
@@ -117,9 +119,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		jQuery(document).ready(function ($) {
 			$(".scroll, .navbar li a, .footer li a").click(function (event) {
+				if(this.hash){
 				$('html,body').animate({
 					scrollTop: $(this.hash).offset().top
 				}, 1000);
+			}
 			});
 		});
 

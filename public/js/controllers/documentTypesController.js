@@ -1,5 +1,6 @@
 App.controller('documentTypesController', ['$scope', '$http', '$rootScope', '$window', 'documentsService', 'APP_Config', function($scope, $http, $rootScope, $window, documentsService, APP_Config)
 {
+
 	console.log("START - documentTypesController");
 	/*________________________________________________________[Description]________________________________________________________________*/
 	
@@ -22,7 +23,7 @@ App.controller('documentTypesController', ['$scope', '$http', '$rootScope', '$wi
 		console.log("START - goToDocuments");
 		location.assign(APP_Config.App_URL+'documents/'+id);
 		console.log("STOP - goToDocuments");
-	}
+	};
 	
 	
 	/*_____________________________________________________________________________________________________________________________________*/
@@ -63,3 +64,11 @@ App.controller('documentTypesController', ['$scope', '$http', '$rootScope', '$wi
 	
 	console.log("STOP - documentTypesController");
 }]);
+
+
+
+
+	// $http.defaults.headers.common["Access-Control-Allow-Origin"] =  "*" ;	
+	// $http.defaults.headers.common["Content-Type"] = "text/plain";
+
+	

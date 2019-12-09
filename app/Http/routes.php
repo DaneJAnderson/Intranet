@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -33,7 +34,7 @@ Route::get('/home', function ()
 Route::get('/about', function ()
 {
     return view('about');
-});\
+});
 
 
 Route::get('/tools', function ()
@@ -50,20 +51,20 @@ Route::get('/noticeboard', function ()
 
 Route::get('/article/{id}', ['middleware' => [/*'Session_Manager'*/], function($id)
 {    
-	return view('article')->with('id', $id);
+	return view('article'); //->with('id', $id)
 }]);
 
 
 Route::get('/document_types', ['middleware' => [/*'Session_Manager'*/], function()
 {    
 	return view('document_types');
-}]);
+}]); //->middleware('cors')
 
 
 Route::get('/documents/{id}', ['middleware' => [/*'Session_Manager'*/], function($id)
 {    
 	return view('documents')->with('id', $id);
-}]);
+}]);  //->middleware('cors')
 
 
 Route::get('/documents/{id}/{subtype}', ['middleware' => [/*'Session_Manager'*/], function($id, $subtype)
@@ -74,7 +75,7 @@ Route::get('/documents/{id}/{subtype}', ['middleware' => [/*'Session_Manager'*/]
 	];
 
 	return view('documents_by_subtypes')->with('data', $data);
-}]);
+}]);  //->middleware('cors')
 
 
 Route::get('/gallery', function ()

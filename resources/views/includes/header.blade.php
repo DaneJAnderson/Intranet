@@ -1,9 +1,10 @@
 <!--header-->
+
 <div class="header " n1g-controller="headerController">
-	<div class="top_header" id="home">
+	<div class="top_header " id="home">
 		<!-- Fixed navbar -->
-		<nav class="navbar navbar-default navbar-fixed-top" style1="background-image: url('images/strip.png');">
-			<div class="nav_top_fx_w3ls_agileinfo">
+		<nav class="navbar bg-primary navbar-default navbar-fixed-top" style1="background-image: url('images/strip.png'); ">
+			<div class="nav_top_fx_w3ls_agileinfo ">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             			<span class="sr-only">Toggle navigation</span>
@@ -14,7 +15,7 @@
 					<div class="logo-w3layouts-agileits">
 						<img src="http://<?php echo Config::get('constants.BASE_URL').'/images/cok_50_logo_128x128.png' ?>" style="width: 60px; height: 60px; vertical-align: middle; display: inline-block;"/>
 						<span style="vertical-align: middle;  display: inline-block; margin-top: 10px; margin-right: 10px;">
-							<h1> <a class="navbar-brand" href="http://<?php echo Config::get('constants.BASE_URL'); ?>" style="color: #ffb500;"><!--i class="fa fa-clone" aria-hidden="true" style="color: #ffb500;"--></i> COK Sodality <span class="desc" style="margin-top: 10px;">Invest in your future today!</span></a></h1>
+							<h1> <a class="navbar-brand textShadow" href="http://<?php echo Config::get('constants.BASE_URL'); ?>" style="color: #ffb500;"><!--i class="fa fa-clone" aria-hidden="true" style="color: #ffb500;"--></i> COK Sodality <span class="desc" style="margin-top: 10px;">Invest in your future today!</span></a></h1>
 						</span>
 					</div>
 				</div>
@@ -24,8 +25,8 @@
 							<!--li><a class="request" href="contact.html">Send Request</a></li-->
 
 						</ul>
-						<ul class="nav navbar-nav">
-							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>" style="">Home!</a></li>
+						<ul class="nav navbar-nav textShadow">
+							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>" >Home</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
 							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
@@ -47,4 +48,5 @@
 		</nav>
 	</div>
 </div>
+
 <!--header-->
