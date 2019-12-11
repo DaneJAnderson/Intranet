@@ -37,7 +37,7 @@ gulp.task('watch', function() {
         }
     });
 
-    watch('./resources/**/*.php', function() {
+    watch(['./resources/**/*.php','./public/css/**/*.css','./public/js/**/*.js'], function() {
         browserSync.reload();
     });
 });

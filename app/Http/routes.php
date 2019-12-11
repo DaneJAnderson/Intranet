@@ -11,11 +11,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+// 
+ include('dRoutes.php');
+
+// Route::get('/documents/toupload', 'uploadsController@index')->name('toupload');
 
 Route::get('/', function ()
 {
     return view('home');
 });
+
 
 
 //Routing for User access
