@@ -8,7 +8,8 @@
         
         <div class="inner_sec_info_wthree_agile" style="padding-top: 100px; padding-bottom: 100px;">
 <div class="container">
-    
+
+        {{-- ALert Data Successfully inserted in Database Toast --}}
         @if (session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
@@ -23,6 +24,10 @@
 <div class="container " style="width:80%">
    <form action="http://<?php echo Config::get('constants.BASE_URL'); ?>/uploads/post" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
+
+    @if(!empty($id))
+    {{ method_field('PUT') }}
+    @endif
 
     {{-- Select File to upload --}}
 <input type="file" onchange="addName(this.files)" value="" name="file" id="fileToUpload" required><br/><br/>
@@ -40,6 +45,19 @@
             <input type="text" class="form-control" id="docUpUrl" name="url" 
             placeholder="Documents Url" minlength="3" required>        
         </div><br/>
+
+        {{-- Documents Format word|pdf|png --}}
+        <div class="form-group">
+                <label for="Document Format">Document Format</label>
+                <select class="form-control" id="selectFormat" minlength=1 onchange="addUrLPrefix()" name="format"  required>
+                    <option value="">Select Format</option>
+                    <option value="1" >PDF</option>
+                    <option value="2">Word</option>
+                    <option value="3">Excel</option>
+                    <option value="4">Link</option>
+                    <option value="5">Folder</option>
+                </select>
+                </div><br/>
               
 
         {{-- Document Type Member|Credit|MIS|HR|Policy --}}
@@ -58,31 +76,6 @@
                   <option value="9">Risk & Compliance</option>
                 </select>
               </div><br/>
-        {{-- <div class="form-group">
-          <label for="Documents Type "> Documents Type </label>
-          <input type="text" class="form-control" id="" name="type" 
-          placeholder="Document Type" required>
-        </div> --}}
-
-
-        {{-- Documents Format word|pdf|png --}}
-        <div class="form-group">
-                <label for="Document Format">Document Format</label>
-                <select class="form-control" id="selectFormat" minlength=1 onchange="addUrLPrefix()" name="format"  required>
-                  <option value="">Select Format</option>
-                  <option value="1" >PDF</option>
-                  <option value="2">Word</option>
-                  <option value="3">Excel</option>
-                  <option value="4">Link</option>
-                  <option value="5">Folder</option>
-                </select>
-              </div><br/>
-
-        {{-- <div class="form-group">
-          <label for="Document Format"> Document Format </label>
-          <input type="text" class="form-control" id="" name="format" 
-          placeholder="Document Format" required>
-        </div> --}}
 
         {{-- Document Status active|inactive --}}
         <div class="form-group">
@@ -114,37 +107,32 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
-</div>
-
-      
+</div>     
 
 </div>
-
         </div>
 </div>
 
 
 <script>
 
+    // Create Url and File Name from File Object
     function addName(val){
-console.log(val);
-
-var name = document.getElementById("docUpName");
-var uri = document.getElementById("docUpUrl");
-
-var n1 = val[0].name.split('.').slice(0, -1).join('.');
-name.value = n1.replace(/_/g,' ');
-uri.value = val[0].name;
-
+        var name = document.getElementById("docUpName");
+        var uri = document.getElementById("docUpUrl");
+        var n1 = val[0].name.split('.').slice(0, -1).join('.');
+        n1 = n1.replace(/_\d*$/g,""); // Remove Numbers at the End of the string
+        name.value = n1.replace(/_/g,' '); // Remove UnderScore
+        uri.value = val[0].name;
     }
 
+        // Add File format to beginning of file URL
     function addUrLPrefix(){
         var selectFormat = document.getElementById("selectFormat");
         var selectedValue = selectFormat.options[selectFormat.selectedIndex].value;
         if(selectedValue == 1){
         var uri = document.getElementById("docUpUrl");
         uri.value = "PDF/"+uri.value ;
-        // alert(selectedValue);
         }
     }
 

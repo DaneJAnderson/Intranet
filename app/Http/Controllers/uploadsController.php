@@ -33,7 +33,7 @@ class uploadsController extends Controller
           // Storage::disk('local')->put('file.txt', 'Contents');          
           $file = $request->file('file');
           // $url = $file->move($path.'\app\public\documents\test',$file->getClientOriginalName());
-          $url = $file->move($path.'\app\public\documents\test\\'.strtolower($pre[0]), $file->getClientOriginalName());
+          $url = $file->move($path.'\app\public\documents\\'.strtolower($pre[0]), $file->getClientOriginalName());
           
         }
                
@@ -45,12 +45,16 @@ class uploadsController extends Controller
 
     }
 
-    public function update(){
+    public function updates($id){
 
-        $Uploads = new Uploads();
-        $upload = $Uploads->update();
+        // return dd($id);
+        // $Uploads = new Uploads();
+        // $upload = $Uploads->update();
+        if(!empty($id)){
 
-        return view('uploads.update', ['upload' => $upload]);        
+        return view('uploads.create', ['id' => $id]);   
+        
+        }
     }
 
 }
