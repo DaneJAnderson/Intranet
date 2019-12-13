@@ -68,7 +68,23 @@ Route::get('/document_types', ['middleware' => [/*'Session_Manager'*/], function
 
 Route::get('/documents/{id}', ['middleware' => [/*'Session_Manager'*/], function($id)
 {    
-	return view('documents')->with('id', $id);
+	switch($id){
+
+		case 1: $docType = "Member";break;
+		case 2: $docType = "Credit";break;
+		case 3: $docType = "Operation Procedures";break;
+		case 4: $docType = "MIS";break;
+		case 5: $docType = "DMU";break;
+		case 6: $docType = "HR & Learning";break;
+		case 7: $docType = "Other Documents";break;
+		case 8: $docType = "Policies";break;
+		case 9: $docType = "Risk & Compliance";break;
+		default: "Other";break;
+
+
+	}
+
+	return view('documents')->with('docData', ['id' => $id, 'docType' => $docType]);
 }]);  //->middleware('cors')
 
 

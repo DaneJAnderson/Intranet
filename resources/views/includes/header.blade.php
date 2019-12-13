@@ -34,7 +34,9 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Links <span class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>document_types">Documents</a></li>
+									
 									<li><a href="http://intranew/queuing_system" target="_blank">Queueing System</a></li>
+									
 									<li><a href="https://mail.cokcu.com" target="_blank">WebMail</a></li>
 
 

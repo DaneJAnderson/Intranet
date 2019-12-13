@@ -19,10 +19,12 @@
 
    <h1 class="text-center"> Uploads Documents</h1> <br/> <br/>
 
-
+   {{-- Action Submmit to Post or Put Method --}}
+@php ($action = empty($id) ? "http://". Config::get('constants.BASE_URL')."uploads/post":
+"http://". Config::get('constants.BASE_URL')."uploads/updates/".$id)
     
 <div class="container " style="width:80%">
-   <form action="http://<?php echo Config::get('constants.BASE_URL'); ?>/uploads/post" method="POST" enctype="multipart/form-data">
+   <form action="{{$action}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     @if(!empty($id))
@@ -30,6 +32,7 @@
     @endif
 
     {{-- Select File to upload --}}
+
 <input type="file" onchange="addName(this.files)" value="" name="file" id="fileToUpload" required><br/><br/>
 
     {{-- Document Name --}}

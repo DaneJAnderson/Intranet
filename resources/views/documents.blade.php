@@ -3,24 +3,37 @@
 @section('title', 'COK Sodality Credit Union &reg; | Home')
 
 @section('content')
-<div ng-controller="documentsController" ng-init="document_type_id = {{$id}};" style="margin-left: 100px; margin-top: 100px; margin-right: 100px;">
+
+
+<div ng-controller="documentsController" ng-init="document_type_id = {{$docData['id']}};" style="margin-left: 100px; margin-top: 100px; margin-right: 100px;">
 	
 	<!--content-->
 	<div class="content">
 		<br/>
-		<div class="documents_header documentTypeHead shadow-lg">
+		{{-- documents_header --}}
+		<br/><br/>
 			<center>
-				Documents
+				<div >
+				<span class="documentTypeHead shadow-lg ">
+				{{$docData['docType']}}
+				</span>
+			</div>
 			</center>
-		</div>
+		
 		<br/>
 		<center>
 			<input type="text" ng-model="search_field" class="search documentSearch" placeholder="   Search.."/>
 		</center>
+		
+		<div id="stickyDocType">
+			 <h3 >{{strtoupper($docData['docType'])}} </h3> </div>
 		<br/><br/>
 		<br/><br/>
+
+		
+
 		<div class="row">
-			<div class="col-xs-12 col-md-3 documents" ng-repeat="document in documents" ng-if="filterDocuments(document.name)" style="height: 150px;">
+			<div class="col-xs-12 col-md-3 documents" ng-repeat="document in documents" ng-if="filterDocuments(document.name)" style="height: 160px;">
 				<a href="http://<?php echo Config::get('constants.Storage_URL'); ?>documents/@{{document.file}}" download>
 					<span class="glyphicon glyphicon-download" style="float: right; font-weight: bold; font-size: 24px; margin-top: 10px;"></span></p>
 				</a>
@@ -35,10 +48,10 @@
 						<img ng-if="document.format == 5" ng-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/documents_types/folder.png" style="width: 100px; height: 100px;"/>
 					</a>
 					<br/>
-					<font ng-if="document.name.length > 41" style="font-weight: bold; margin-left: -10px;">
-						@{{document.name.substring(0, 39)}}...
+					<font ng-if="document.name.length >= 50" style="font-weight: bold; margin-left: -10px; ">
+						@{{document.name.substring(0, 49)}}...					
 					</font>
-					<font ng-if="document.name.length < 41" style="font-weight: bold; margin-left: -10px;">
+					<font ng-if="document.name.length < 50" style="font-weight: bold; margin-left: -10px; ">
 						@{{document.name}}
 					</font>
 				</center>

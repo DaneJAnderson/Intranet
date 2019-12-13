@@ -6,12 +6,30 @@
 .textShadow {
 
     font-weight: bolder;
-    font-size: 16px;
-    color: #000;
+    font-size: 16px;  
+    /* color: #000 !important; */
   text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff,
    -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
+ul li a:hover,.dropdown .dropdown-menu li a:hover {
+
+    color: orange !important;
+}
+
 .dropdown .dropdown-menu {
     background-color: rgb(255, 250, 234); 
+    border: none;
 }
+
+.dropdown .dropdown-menu li:hover a {
+    background-color: #fff; 
+    color: blue;
+}
+
+.dropdown .dropdown-menu li {
+
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+    
+}
+.dropdown .dropdown-menu li a {color: #000 !important;}

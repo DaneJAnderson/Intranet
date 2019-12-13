@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use DB;
 use App\Models\Uploads;
 use Illuminate\Http\Request;
@@ -16,8 +15,7 @@ class uploadsController extends Controller
    
     }
 
-    public function post(Request $request){
-        
+    public function post(Request $request){        
 
          $Files = $request->all();
          
@@ -38,23 +36,25 @@ class uploadsController extends Controller
         }
                
         $Uploads = new Uploads();
-        $response = $Uploads->post($Files);
-        
+        $response = $Uploads->post($Files);        
         // return response()->json($upload);
         return redirect('uploads/creates')->with('status', $response);        
 
     }
 
-    public function updates($id){
+    public function retrieve($id){
 
-        // return dd($id);
+        if(!empty($id)){
+        return view('uploads.create', ['id' => $id]);        
+        }
+    }
+
+    public function updates(Request $request){
+
+                // return dd($id);
         // $Uploads = new Uploads();
         // $upload = $Uploads->update();
-        if(!empty($id)){
 
-        return view('uploads.create', ['id' => $id]);   
-        
-        }
     }
 
 }

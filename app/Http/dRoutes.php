@@ -16,11 +16,14 @@
 // Form fields to Enter Uploads
 Route::get('/uploads/creates', 'uploadsController@creates'); //
 
-// Edit Files view
-Route::get('/uploads/creates/{id}', 'uploadsController@updates');
+// Retrieve File from database for Editing.
+Route::get('/uploads/creates/{id}', 'uploadsController@retrieve');
 
-// Uploading file Api
+// Create new Records file Api
 Route::post('/uploads/post', 'uploadsController@post');
+
+// Update Records 
+Route::put('/uploads/updates/{$id}', 'uploadsController@updates');
 
 
 
