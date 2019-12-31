@@ -15,7 +15,7 @@
 		</div>
 		<div class="col-md-6 banner_bottom_left">
 			<p>
-				<b>COK Sodality Co-operative Credit Union Ltd. (COK)</b>, formerly <b>City of Kingston Co-Operative Credit Union Ltd.</b>, was incorporated in October 1967 to serve the financial needs of its members in Kingston and St. Andrew. Over the years COK has evolved into a solid, safe and financially secure, financial services institution well known for its high level of innovativeness in the Credit Union Movement.
+				<b> COK Sodality Co-operative Credit Union Ltd. (COK)</b>, formerly <b>City of Kingston Co-Operative Credit Union Ltd.</b>, was incorporated in October 1967 to serve the financial needs of its members in Kingston and St. Andrew. Over the years COK has evolved into a solid, safe and financially secure, financial services institution well known for its high level of innovativeness in the Credit Union Movement.
 			</p>
 			<p>
 				<b>COK</b> is headquartered in Kingston; serving members across Jamaica through its network of Branches in Kingston & St. Andrew, St. Catherine, Mandeville and Montego Bay. <b>COK</b> also serves its members who reside overseas in North America, the UK, Grand Cayman, and other parts of the Caribbean.

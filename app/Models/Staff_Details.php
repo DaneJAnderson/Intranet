@@ -45,7 +45,9 @@ class Staff_Details extends Model
     */
     public function Current_Birthdays()
     {
-        $Staff_details = DB::select('CALL staff_details_BirthdaysToday_Retrieve();');
+        // Dane staff birthday 
+        $Staff_details = DB::select('CALL get_staff_birthdays();');
+        // $Staff_details = DB::select('CALL staff_details_BirthdaysToday_Retrieve();');
                 
         return $Staff_details;
     }

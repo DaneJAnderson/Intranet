@@ -87,7 +87,8 @@ License
 
 .bgimg
 {
-    background-image: url('../images/confetti_png_5691.png');
+    /* background-image: url('../images/confetti_png_5691.png'); */
+    background-image: url('../images/confetti.gif');
 }
 
 .noticeboard

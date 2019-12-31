@@ -8,6 +8,8 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 	/*[Variables]*/
 	$scope.Articles = [];
 	$scope.Birthdays = [];
+	$scope.UpcomingBday1st = [];
+	$scope.UpcomingBday2nd = [];
 
 
 	/*[Methods]*/
@@ -42,7 +44,7 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 		});
 		
 		$rootScope.utilityService.console_log("STOP - getLastestArticles");
-	}
+	};
 
 
 	/**
@@ -60,9 +62,29 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 		{
 			$rootScope.utilityService.console_log(data);
 
+			// console.log(data);
+
 			if(data.status == 200)
 			{
-				$scope.Birthdays = data.data;
+				// Dane Staff Birthday
+				var bdayToday = data.data.filter( function (item) { return item.bday == 'true'; });
+				$scope.Birthdays = bdayToday;
+
+				var upcomingBday = data.data.filter( function (item) { return item.bday != 'true'; });
+				
+				if(upcomingBday.length > 4) {
+				var halfwayThrough = Math.floor(upcomingBday.length / 2);
+				var firstHalf = upcomingBday.slice(0, halfwayThrough);
+				var secHalf = upcomingBday.slice(halfwayThrough, upcomingBday.length);
+
+				$scope.UpcomingBday1st = firstHalf;
+				$scope.UpcomingBday2nd = secHalf;
+				}
+				else {
+					$scope.UpcomingBday1st = upcomingBday;
+				}
+
+				
 
 				setTimeout(function()
 				{
@@ -82,7 +104,17 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 		});
 		
 		$rootScope.utilityService.console_log("STOP - getCurrentBirthdays");
-	}
+	};
+
+	$scope.convertToDate = function (date){
+		var dateOut = new Date(date);
+          return dateOut;
+	  };
+
+	  $scope.substring = function(dept)
+	  {
+		return dept.substring(0, 23);
+	  };
 
 
 
@@ -114,7 +146,7 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 		}
 		
 		$rootScope.utilityService.console_log("STOP - getBirthdayImages");
-	}
+	};
 	
 	
 	

@@ -7,6 +7,7 @@
 <div ng-controller="homeController">
 <!--content-->
 	<!-- banner -->
+
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
 		<ol class="carousel-indicators">
@@ -167,8 +168,10 @@
 	</div>
 
 
+	@include('home_include.birthdays')
 	<!--/banner_bottom-->
-	<div ng-if="Birthdays.length>0" class="banner_bottom bgimg" style="background-color: #ffb500; padding-top: 20px; padding-bottom: 20px;">
+	<!--
+	 <div ng-if="Birthdays.length>0" class="banner_bottom bgimg" style="background-color: #ffb500; padding-top: 20px; padding-bottom: 20px;">
 		<div class="banner_bottom_in">
 			<h3 class="tittle-w3ls we" style="color: white;">Staff Birthday Listing</h3>
 
@@ -184,7 +187,7 @@
 						department: @{{Birthday.department}}
 					</font>
 					<br/>
-					<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" ng-src="@{{getBirthdayImage(Birthday.image, Birthday.sex)}}" on-error-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" alt="" />
+					<img src="http://<?php // echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" ng-src="@{{getBirthdayImage(Birthday.image, Birthday.sex)}}" on-error-src="http://<?php // echo Config::get('constants.BASE_URL'); ?>images/icons/image_not_available.png" alt="" />
 				</div>
 
 				<div class="gallery-thumbnails" style="">
@@ -195,7 +198,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!--//banner_bottom-->
 
 	<!--/blog-->

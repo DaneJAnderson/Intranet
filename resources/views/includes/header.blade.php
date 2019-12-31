@@ -25,19 +25,19 @@
 							<!--li><a class="request" href="contact.html">Send Request</a></li-->
 
 						</ul>
-						<ul class="nav navbar-nav textShadow">
-							<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>" >Home</a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
-							<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Links <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>document_types">Documents</a></li>
-									
-									<li><a href="http://intranew/queuing_system" target="_blank">Queueing System</a></li>
-									
-									<li><a href="https://mail.cokcu.com" target="_blank">WebMail</a></li>
+			<ul class="nav navbar-nav textShadow">
+				<li class=""><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>" >Home</a></li>
+				<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>about">About COK</a></li>
+				<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>noticeboard">Notice Board</a></li>
+				<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>tools">Tools</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quick Links <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>document_types">Documents</a></li>
+						
+						<li><a href="http://intranew/queuing_system" target="_blank">Queueing System</a></li>
+						
+						<li><a href="https://mail.cokcu.com" target="_blank">WebMail</a></li>
 
 
 								</ul>

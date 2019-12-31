@@ -27,8 +27,13 @@
    <form action="{{$action}}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
+    @php(
+        $fieldData = ""
+    )
+
     @if(!empty($id))
     {{ method_field('PUT') }}
+    @php($fieldData = $data)
     @endif
 
     {{-- Select File to upload --}}
@@ -39,7 +44,7 @@
         <div class="form-group">
           <label for="Document Name"> Document Name </label>
           <input type="text" class="form-control" id="docUpName" name="name" 
-          placeholder="Document Name" minlength="3" required>        
+        value="{{$fieldData}}" placeholder="Document Name" minlength="3" required>        
         </div><br/>
 
     {{-- Document (file) Uri  file uri and extention --}}
@@ -52,7 +57,8 @@
         {{-- Documents Format word|pdf|png --}}
         <div class="form-group">
                 <label for="Document Format">Document Format</label>
-                <select class="form-control" id="selectFormat" minlength=1 onchange="addUrLPrefix()" name="format"  required>
+                <select class="form-control" id="selectFormat" minlength=1 onchange="addUrLPrefix()"
+                 name="format"  required>
                     <option value="">Select Format</option>
                     <option value="1" >PDF</option>
                     <option value="2">Word</option>
@@ -77,6 +83,7 @@
                   <option value="7">Other</option>
                   <option value="8">Policy</option>
                   <option value="9">Risk & Compliance</option>
+                  <option value="10">Universa Training Manuals</option>
                 </select>
               </div><br/>
 
@@ -97,13 +104,15 @@
         {{-- Document CreatedBy  --}}
         <div class="form-group">
           <label for=" Document Created_by "> Document Created_by  </label>
-          <input type="text" class="form-control" id="" value="1" name="createdby" placeholder="CreatedBy" required>        
+          <input type="text" class="form-control" id="" value="1" name="createdby" placeholder="CreatedBy" 
+          required>        
         </div><br/>
 
         {{-- Document UpdatedBy --}}
         <div class="form-group">
           <label for="Document UpdatedBy">Document UpdatedBy   </label>
-          <input type="text" class="form-control" id="" value="1" name="updatedby" placeholder="Document UpdatedBy" required>
+          <input type="text" class="form-control" id="" value="1" name="updatedby" 
+          placeholder="Document UpdatedBy" required>
         </div><br/>      
 
 
@@ -136,7 +145,7 @@
         if(selectedValue == 1){
         var uri = document.getElementById("docUpUrl");
         uri.value = "PDF/"+uri.value ;
-        }
+        }      
     }
 
 

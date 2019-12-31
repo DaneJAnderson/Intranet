@@ -48,10 +48,10 @@
 						<img ng-if="document.format == 5" ng-src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/documents_types/folder.png" style="width: 100px; height: 100px;"/>
 					</a>
 					<br/>
-					<font ng-if="document.name.length >= 50" style="font-weight: bold; margin-left: -10px; ">
-						@{{document.name.substring(0, 49)}}...					
+					<font ng-if="document.name.length >= 40" style="font-weight: bold; margin-left: -10px; ">
+						@{{document.name.substring(0, 40)}}...					
 					</font>
-					<font ng-if="document.name.length < 50" style="font-weight: bold; margin-left: -10px; ">
+					<font ng-if="document.name.length < 40" style="font-weight: bold; margin-left: -10px; ">
 						@{{document.name}}
 					</font>
 				</center>

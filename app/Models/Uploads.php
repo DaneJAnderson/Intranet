@@ -23,6 +23,7 @@ class Uploads extends Model
 
     public function retrieve(){
 
+        
         return "Data Retrieve!!";            
     }
 

@@ -25,6 +25,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/All_Styles(COK_Intranet).css" rel="stylesheet" type="text/css">
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/header.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/document.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,6 +41,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/jquery.min.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/jquery-2.2.3.min.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/bootstrap.js"></script>
+
 
 <!--Sweet alert-->
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/sweetalert/css/sweetalert.css" rel="stylesheet">

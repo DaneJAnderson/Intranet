@@ -18,6 +18,7 @@
         for authorized users
     @endcan 
 
-8)   
+8)   For Forms : composer install laravel/html . then config/app -> providers add provider
+    then aliases - add Facade
 
   

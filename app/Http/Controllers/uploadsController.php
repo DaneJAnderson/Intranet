@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Uploads;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class uploadsController extends Controller
 {
     public function creates(){
 
-        return view('uploads.create');
-   
+        return view('uploads.create');   
     }
 
     public function post(Request $request){        
@@ -31,7 +29,8 @@ class uploadsController extends Controller
           // Storage::disk('local')->put('file.txt', 'Contents');          
           $file = $request->file('file');
           // $url = $file->move($path.'\app\public\documents\test',$file->getClientOriginalName());
-          $url = $file->move($path.'\app\public\documents\\'.strtolower($pre[0]), $file->getClientOriginalName());
+          $url = $file->move($path.'\app\public\documents\\'.strtolower($pre[0]),
+           $file->getClientOriginalName());
           
         }
                
@@ -45,7 +44,12 @@ class uploadsController extends Controller
     public function retrieve($id){
 
         if(!empty($id)){
-        return view('uploads.create', ['id' => $id]);        
+
+        // return dd($id);
+         $Uploads = new Uploads();
+         $retrieve = $Uploads->retrieve();
+
+        return view('uploads.create', ['id' => $id, 'data' => $retrieve]);        
         }
     }
 

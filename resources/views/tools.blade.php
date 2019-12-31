@@ -148,7 +148,9 @@
 					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
 						<div>
 							<span class="image-block">
-							<a class="image-zoom" href="https://mail.cokcu.com" target="_blank" rel="prettyPhoto[gallery]">
+								{{-- https://mail.cokcu.com --}}
+								{{-- https://login.live.com --}}
+							<a class="image-zoom" href="https://login.microsoftonline.com/" target="_blank" rel="prettyPhoto[gallery]">
 								<img src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/WebMail.png" class="img-responsive" alt="Conceit">
 								<div class="port-info">
 									<h5>Webmail</h5>

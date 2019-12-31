@@ -79,8 +79,8 @@ Route::get('/documents/{id}', ['middleware' => [/*'Session_Manager'*/], function
 		case 7: $docType = "Other Documents";break;
 		case 8: $docType = "Policies";break;
 		case 9: $docType = "Risk & Compliance";break;
+		case 10: $docType = "Universa Training Manuals";break;
 		default: "Other";break;
-
 
 	}
 
