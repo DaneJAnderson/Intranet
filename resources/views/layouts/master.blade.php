@@ -71,6 +71,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 ============================================ -->
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/angular.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/angular-ui-router.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/angular-animate.min.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/angular-sanitize.min.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>vendors/angular/js/angular-touch.min.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/App.js"></script>
 <!-- Angular Controllers
 ============================================ -->
@@ -81,6 +85,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/galleryController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/photosController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/documentsSubtypesController.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/bdayLoginPopup.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/updateBday.js"></script>
 <!-- Angular Factories
 ============================================ -->
 <!--script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/factories/eventsFactory.js"></script-->

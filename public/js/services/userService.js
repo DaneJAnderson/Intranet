@@ -32,6 +32,7 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 	this.getLoginStatus = function ()
 	{
 		var deferred = $q.defer();
+		var page = '';
 		
 		$http.get(APP_Config.App_API_URL+'login_status')
 		     .then(
@@ -251,6 +252,11 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 	*
 	*	@return: result (JSONARRAY) - Users
 	*/
+
+/*
+	DANE Birthday Staff
+*/ 
+
 	this.getCurrentBirthdays = function ()
 	{
 		var deferred = $q.defer();
@@ -270,7 +276,104 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 				    );
 		
 		return deferred.promise; //return the promise
-    }
+	};
 	
+	this.getAllStaff = function ()
+	{
+		var deferred = $q.defer();
+		
+		$http.get(APP_Config.App_API_URL+'birthday_staff_manager')
+		     .then(
+						function(data)
+						{
+							return deferred.resolve({"status":data.status, "data":data.data});
+						}
+					  )
+		   	  .catch(
+						function(data)
+						{
+							return deferred.resolve({"status":data.status, "data":data.data});
+						}
+				    );
+		
+		return deferred.promise; //return the promise
+	};
+
+	// Post Data to Staff Birthday staff_details.status table 
+
+	// --------------------- Update Status ------------------------------ //
+
+	this.updateStatus = function (id, status)
+	{
+		var deferred = $q.defer();
+
+	 var headers =  { 'Content-Type' : 'application/json' };
+	 data = {'id': id, 'status': status};
+	$http.post(APP_Config.App_API_URL+'updatestatus', data, headers)
+		.then(
+			function(data, status)
+			{
+				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(
+			function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+	};
+	
+// ------------------------- Edit Birthday Staff ----------------------- //
+
+	this.editBdayStaff = function (id)
+	{
+		var deferred = $q.defer();
+
+ 	var headers =  { 'Content-Type' : 'application/json' };
+	$http.post(APP_Config.App_API_URL+'edit_bday_staff', {'id': id}, headers)
+		.then(
+			function(data, status)
+			{
+			
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(
+			function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+	};
+	
+	// ------------------------- Delete Birthday Staff ----------------------- //
+	this.deleteBdayStaff = function (id)
+	{
+		var deferred = $q.defer();
+
+ 	var headers =  { 'Content-Type' : 'application/json' };
+	$http.post(APP_Config.App_API_URL+'delete_bday_staff', {'id': id}, headers)
+		.then(
+			function(data, status)
+			{
+				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(
+			function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+    };
 	
 }]);

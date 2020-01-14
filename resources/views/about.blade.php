@@ -3,7 +3,7 @@
 @section('title', 'COK Sodality Credit Union &reg; | About COK ')
 
 @section('content')
-<div n1g-controller="homeController">
+<div ng-controller="homeController">
 <!--content-->
 
 <div class="inner_sec_info_wthree_agile" style="padding-top: 100px; padding-bottom: 100px;">

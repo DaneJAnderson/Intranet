@@ -167,4 +167,13 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
     });
 	
 	$rootScope.utilityService.console_log("STOP - homeController");
+
+
+
+	// Call to child updateBdayController (birthday) 
+	$rootScope.$on('bdayUpdate', function(event, data) {
+        $rootScope.$emit('bdayUpdateP', 'i am parent =: '+data); 
+    });
+
+
 }]);

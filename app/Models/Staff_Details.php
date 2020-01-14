@@ -51,4 +51,31 @@ class Staff_Details extends Model
                 
         return $Staff_details;
     }
+
+    public function getAllStaff()
+    {
+        // Dane staff birthday 
+        $Staff_details = DB::select('CALL get_all_birthday_staff();');
+        // $Staff_details = DB::select('CALL staff_details_BirthdaysToday_Retrieve();');
+                
+        return $Staff_details;
+    }
+
+    // Update Staff Status 
+    public function updateStaffBday($id, $status)
+    { 
+        $Staff_details = DB::select("CALL update_status_birthday($id,$status);");            
+        return $Staff_details;
+    }
+
+    public function editStaffBday($id)
+    {      
+        $Staff_details = DB::select('CALL edit_birthday_staff();');            
+        return $Staff_details;
+    }
+    public function deleteStaffBday($id)
+    { 
+        $Staff_details = DB::select('CALL delete_birthday_staff();');                
+        return $Staff_details;
+    }
 }

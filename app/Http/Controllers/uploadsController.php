@@ -53,9 +53,9 @@ class uploadsController extends Controller
         }
     }
 
-    public function updates(Request $request){
+    public function updates(Request $request, $id){
 
-                // return dd($id);
+                 return dd($id);
         // $Uploads = new Uploads();
         // $upload = $Uploads->update();
 

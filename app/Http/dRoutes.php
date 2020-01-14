@@ -25,11 +25,23 @@ Route::post('/uploads/post', 'uploadsController@post');
 // Update Records 
 Route::put('/uploads/updates/{$id}', 'uploadsController@updates');
 
+Route::get('/birthday/updates', 'birthdayController@updates');
+
+// Get All Staff 
+Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff');
+
+// Update Staff Status
+ Route::post('/API/updatestatus', 'staffBirthdayController@updatestatus');
+
+ Route::post('/API/edit_bday_staff', 'staffBirthdayController@edit_bday_staff');
+ 
+ Route::post('/API/delete_bday_staff', 'staffBirthdayController@delete_bday_staff');
 
 
-
-
-
+// Route::post('/updatestatus', function ()
+// 	{
+//     	return "<h1>Hello i am here</h1>";
+// 	});
 
 
 
