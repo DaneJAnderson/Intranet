@@ -86,7 +86,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/photosController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/documentsSubtypesController.js"></script>
 <script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/bdayLoginPopup.js"></script>
-<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/updateBday.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/updateBdayPagination.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/editbdayPopup.js"></script>
+<script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/controllers/dobpicker.js"></script>
 <!-- Angular Factories
 ============================================ -->
 <!--script src="http://<?php echo Config::get('constants.BASE_URL'); ?>js/factories/eventsFactory.js"></script-->

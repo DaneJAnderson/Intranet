@@ -73,12 +73,14 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 				var upcomingBday = data.data.filter( function (item) { return item.bday != 'true'; });
 				
 				if(upcomingBday.length > 4) {
-				var halfwayThrough = Math.floor(upcomingBday.length / 2);
+				// var halfwayThrough = Math.floor(upcomingBday.length / 2);
 				var firstHalf = upcomingBday.slice(0, halfwayThrough);
-				var secHalf = upcomingBday.slice(halfwayThrough, upcomingBday.length);
+				var secHalf = upcomingBday.slice(4, upcomingBday.length);
 
 				$scope.UpcomingBday1st = firstHalf;
 				$scope.UpcomingBday2nd = secHalf;
+
+				console.log(halfwayThrough);
 				}
 				else {
 					$scope.UpcomingBday1st = upcomingBday;

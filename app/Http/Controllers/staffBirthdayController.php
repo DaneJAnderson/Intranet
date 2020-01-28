@@ -25,8 +25,10 @@ class staffBirthdayController extends Controller
     public function updatestatus(Request $request){
 
         $id = $request->input('id');
+        $status = $request->input('status');
+
          $Staff_Details = new Staff_Details();
-		 $Staff_details = $Staff_Details->updateStaffBday($id);
+		 $Staff_details = $Staff_Details->updateStaffBday($id, $status);
 		
 		 return response()->json($Staff_details);
 		
@@ -35,21 +37,20 @@ class staffBirthdayController extends Controller
 
     public function edit_bday_staff(Request $request) {
 
-        $id = $request->input('id');
-        $status = $request->input('status');
-
+        $staff = $request->only(['id','username', 'fname', 'lname', 'gender', 'jobTitle', 'dept','dob']);
+        
         $Staff_Details = new Staff_Details();
-		$Staff_details = $Staff_Details->editStaffBday($id, $status);
+		$Staff_details = $Staff_Details->editStaffBday($staff);
 		
 		return response()->json($Staff_details);
         
     }
 
-    public function delete_bday_staff(Request $request) {
-
+    public function retrieve_bday_staff(Request $request) {
+        
         $id = $request->input('id');
         $Staff_Details = new Staff_Details();
-		$Staff_details = $Staff_Details->deleteStaffBday($id);
+		$Staff_details = $Staff_Details->retrieveStaffBday($id);
 		
 		return response()->json($Staff_details);
     }

@@ -329,12 +329,12 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 	
 // ------------------------- Edit Birthday Staff ----------------------- //
 
-	this.editBdayStaff = function (id)
+	this.editBdayStaff = function (staff)
 	{
 		var deferred = $q.defer();
 
  	var headers =  { 'Content-Type' : 'application/json' };
-	$http.post(APP_Config.App_API_URL+'edit_bday_staff', {'id': id}, headers)
+	$http.post(APP_Config.App_API_URL+'edit_bday_staff', staff, headers)
 		.then(
 			function(data, status)
 			{
@@ -353,12 +353,12 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 	};
 	
 	// ------------------------- Delete Birthday Staff ----------------------- //
-	this.deleteBdayStaff = function (id)
+	this.retrieveBdayStaff = function (id)
 	{
 		var deferred = $q.defer();
 
  	var headers =  { 'Content-Type' : 'application/json' };
-	$http.post(APP_Config.App_API_URL+'delete_bday_staff', {'id': id}, headers)
+	$http.post(APP_Config.App_API_URL+'retrieve_bday_staff', {'id': id}, headers)
 		.then(
 			function(data, status)
 			{

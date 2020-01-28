@@ -1,19 +1,40 @@
   App.controller('PaginationDemoCtrl',['$scope','$log','$rootScope','userService', function ($scope, $log, $rootScope, userService) {
 
     // ------------------- Edit Service Call --------------- //
-    $scope.editStaff = function(id) {
-           
-      userService.editBdayStaff(id).then(function(data)
-      {
-         console.log(data.data);
-      });     
+    // $scope.editStaff = function(id) {
 
-    };
+    //   userService.editBdayStaff(id).then(function(data)
+    //   {
+    //      console.log(data.data);
+         
+    //   });     
+
+    // };
   
     // ------------------- Delete Service Call --------------------- //
     $scope.deleteStaff = function(id) {
+
+      sweetAlert({
+        title: "Are you sure you want to delete this Staff?",
+        text: "",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+      },
+      function(){
+        swal("Deleted!", "Staff has been deleted successfully", "success");
+      });
+
+        // Remainder Change Status to 3
+        var status = 1;
+
+      var x = document.getElementById("deleteBS_"+id); 
+  
+       x.innerHTML = "";
            
-      userService.editBdayStaff(id).then(function(data)
+      userService.updateStatus(id, status).then(function(data)
       {
          console.log(data.data);
       });     
@@ -26,14 +47,19 @@
 
       var x = document.getElementById("status_"+id); 
      // console.log(x);
+     var status = 1;
+
      if(x.innerHTML == "Disabled"){
       x.innerHTML = "Active";
-      x.setAttribute("style", "font-weight:bold;color:green");
+      x.setAttribute("style", "font-weight:bold;color:green; padding-right:26px;");
+      status = 1;
      } else {
       x.innerHTML = "Disabled";
-      x.setAttribute("style", "font-weight:bold;color:grey");}
+      x.setAttribute("style", "font-weight:bold;color:grey");
+      status = 2;
+    }
 
-      userService.updateStatus(id).then(function(data)
+      userService.updateStatus(id, status).then(function(data)
       {
          console.log(data.data);
       });     
@@ -45,16 +71,18 @@
 
   userService.getAllStaff().then(function(data)
 {
-  
-  
+    
     // console.log(data.data);
     $scope.allStaff = data.data; 
 
     //  Search All Staff Members
     $scope.search = function (text) {
-      if ($scope.searchText != undefined && text.length > 1) {
-        
+      
+     // $scope.searchText
+      if ( text != undefined && text.length > 1) {        
+       
         $scope.itemsPerPage = $scope.allStaff.length;
+        
       } else {
         $scope.itemsPerPage = 10;
       }

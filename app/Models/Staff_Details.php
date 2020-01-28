@@ -1,7 +1,6 @@
 <?php
 /**
-*   Author: Gavin Palmer
-*   Author URL: http://www.dynamicevolution.technology
+*   Author: Dane J Anderson   
 *   Companp: COK Sodality Credit union
 *   License: 
 *   License URL: 
@@ -64,18 +63,35 @@ class Staff_Details extends Model
     // Update Staff Status 
     public function updateStaffBday($id, $status)
     { 
-        $Staff_details = DB::select("CALL update_status_birthday($id,$status);");            
+       // $Staff_details = DB::select('CALL update_status_birthday('.$id.','.$status.');');   
+
+       $Staff_details = DB::update("update staff_details set status = $status where id = ?", [$id]);         
         return $Staff_details;
     }
 
-    public function editStaffBday($id)
-    {      
-        $Staff_details = DB::select('CALL edit_birthday_staff();');            
+    public function editStaffBday($staff)
+    {   
+         
+         $username = $staff['username'];
+         $fname = $staff['fname'];
+         $lname = $staff['lname'];
+         $fullname = $staff['fname']." ".$staff['lname'];
+         $gender = $staff['gender'];
+         $dob = $staff['dob'];
+         $dept = $staff['dept'];
+         $jobTitle = $staff['jobTitle'];
+         $id = $staff['id'];    
+       
+        $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname' where id = ?", [$id]);
+        
         return $Staff_details;
+         
     }
-    public function deleteStaffBday($id)
+
+    public function retrieveStaffBday($id)
     { 
-        $Staff_details = DB::select('CALL delete_birthday_staff();');                
+        $Staff_details = DB::select("SELECT *FROM staff_details where id = ?", [$id]);               
         return $Staff_details;
     }
+
 }

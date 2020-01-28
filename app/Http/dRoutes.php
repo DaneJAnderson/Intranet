@@ -27,6 +27,7 @@ Route::put('/uploads/updates/{$id}', 'uploadsController@updates');
 
 Route::get('/birthday/updates', 'birthdayController@updates');
 
+
 // Get All Staff 
 Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff');
 
@@ -35,29 +36,12 @@ Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff')
 
  Route::post('/API/edit_bday_staff', 'staffBirthdayController@edit_bday_staff');
  
- Route::post('/API/delete_bday_staff', 'staffBirthdayController@delete_bday_staff');
+ Route::post('/API/retrieve_bday_staff', 'staffBirthdayController@retrieve_bday_staff');
 
 
 // Route::post('/updatestatus', function ()
 // 	{
 //     	return "<h1>Hello i am here</h1>";
 // 	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

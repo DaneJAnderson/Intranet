@@ -7,48 +7,16 @@
 <div style="margin-left: 100px; margin-top: 150px; margin-right: 100px; margin-bottom: 100px;" > 
   
  
- {{-- <div ng-controller="TableCtrl">  --}}
+
 
 <div ng-controller="PaginationDemoCtrl">
 
+  @include('home_include.editBirthday')
+
      <div class="row">
-        <div class="col-xs-3">
-          <input type="text" ng-model="newEmpId" class="form-control" placeholder="EmpId">
-        </div>
-        <div class="col-xs-3">
-          <input type="text" ng-model="newName" class="form-control" placeholder="Name">
-        </div>
-        <div class="col-xs-4">
-          <input type="email" ng-model="newEmail" class="form-control" placeholder="Email">
-        </div> 
-           <div class="col-xs-1">
-               <button ng-click="add()" type="button" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-plus"></span>
-              </button> 
-            </div> 
+ 
       </div>   
-        
-              
-        {{-- <table class="table  table-hover data-table sort display">
-             <thead>
-                 <tr>
-                     <th class="EmpId"> <a href="" ng-click="columnToOrder='EmpId';reverse=!reverse">EmpId 
-                          
-                         </a></th>
-                     <th class="name"> <a href="" ng-click="columnToOrder='name';reverse=!reverse"> Name </a> </th>
-                 <th class="Email"> <a href="" ng-click="columnToOrder='Email';reverse=!reverse"> Email </a> </th>
-                     
-                 </tr>
-             </thead> 
-             <tbody>
-                 
-    <tr ng-repeat="item in filteredList | filter:searchText |  orderBy:columnToOrder:reverse">
-        <td>@{{item.EmpId}}</td>
-        <td>@{{item.name}}</td>
-        <td>@{{item.Email}}</td>
-    </tr>
-             </tbody>
-        </table>         --}}
+ 
 
 <br/><br/>
 
@@ -95,19 +63,19 @@
         </thead> 
         <tbody>
           
-        <tr ng-repeat="staff in allStaff.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))
-        | filter:searchText |  orderBy:columnToOrder:reverse"> 
-            {{-- Search Bug : if searchText.length > 1 let itemsPerPage = AllStaff.length --}}
+        <tr  ng-repeat="staff in allStaff.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))
+        | filter:searchText |  orderBy:columnToOrder:reverse" id=@{{'deleteBS_'+staff.id}}> 
+
           <td>@{{staff.username}}</td>          
           <td>@{{staff.first_name}}</td>          
            <td>@{{staff.last_name}}</td>
            <td  ng-if="staff.status == 1"  >
             <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} class="btn text-success"><b style="padding-right: 15px;">Active</b></button></td>
            <td  ng-if="staff.status != 1" >
-            <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} class="btn text-success"><b >Disabled</b></button></td>
-           <td ><span style="color:grey">       
+            <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} style="color:grey" class="btn"><b >Disabled</b></button></td>
+           <td >      
 
-        <button ng-click="editStaff(staff.id)" class="btn btn-info">Edit</button>
+        <button ng-click="editbday(staff.id)" class="btn btn-info">Edit</button>
         <button ng-click="deleteStaff(staff.id)" class="btn btn-danger">Delete</button>
         </td>
         </tr>
@@ -115,15 +83,13 @@
 </table>   
 
   <ul style="float:right" uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" ng-change="pageChanged()"  boundary-link-numbers="true"
-  items-per-page="itemsPerPage" 
-  ></ul>
+  items-per-page="itemsPerPage" ></ul>
   
       <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
 
-    {{-- </div> --}}
         
 </div> <!-- Ends Controller -->
-
+</div>
 
  
 </div>
