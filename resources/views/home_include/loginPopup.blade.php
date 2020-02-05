@@ -1,8 +1,26 @@
+<style>
+@media screen and (max-width: 1190px) {
+  .addbday {
+   
+    float: right;
+	
+   
+  }
+}
+.headerText {
+  color: #4d79ff;
+  text-shadow:
+   -1px -1px 0 #fff,  
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+     1px 1px 0 #fff;
+}
+</style>
 
 <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
     <script type="text/ng-template" id="loginPopup.html">
-        <div class="modal-header">
-            <h3 class="modal-title" id="modal-title">User Login!</h3>
+        <div class="modal-header bg-info">
+            <center><h3 class="modal-title headerText " id="modal-title">HR & Learning Signin </h3></center>
         </div>
         <div class="modal-body" id="modal-body">
             <!-- <ul>
@@ -12,16 +30,18 @@
             </ul> -->
             <p class="form-group">
                 <label>Username</label>
-                <input type="text" class="form-control" required />
+                <input type="text" id="loginName" ng-keypress="$ctrl.pressEnter($event)" ng-model="loginName" class="form-control" required />
               </p>
               <p class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" required />
+                <input type="password" id="loginPwd" ng-keypress="$ctrl.pressEnter($event)" ng-model="loginPwd" class="form-control" required />
               </p>
+
+              <p class="pull-right"><i> This should be your DeskTop Credentials </i></p>
            <!-- Selected: <b>@{{ $ctrl.selected.item }}</b> -->
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" type="button" ng-click="$ctrl.login()">Login</button>
+        <div class="modal-footer bg-info">
+            <button class="btn btn-success" type="button" id="pressEnter" ng-click="$ctrl.login()">Login</button>
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
     </script>
@@ -29,11 +49,11 @@
 
     {{-- <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button> --}}
 
-    <div  class="col-md-2 col-xs-12" style="width:80px !important; height: 60px !important; margin-top: 30px"  ng-click="$ctrl.open()">
+    <div  class="col-md-1 col-xs-12 addbday" style="width:80px !important; height: 60px !important; margin-top: 30px"  ng-click="$ctrl.open()">
         <img class="thumbs img-rounded" style="width:100px !important; height: 80px !important;"  src="images/addBday.png" alt="pic">
     </div>
    
-    <div ng-show="$ctrl.selected">Selection from a modal: @{{ $ctrl.selected }}</div>
+    {{-- <div ng-show="$ctrl.selected">Selection from a modal: @{{ $ctrl.selected }}</div> --}}
     <div class="modal-parent">
     </div>
 </div>

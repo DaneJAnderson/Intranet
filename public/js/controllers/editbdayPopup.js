@@ -6,15 +6,15 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
     $ctrl.animationsEnabled = true;
 
     // Edit Staff Detail 
-    $scope.editbday = function(id) {
-      
+    $scope.editbday = function(id) {      
+
       $ctrl.items = [{'id':id}, 'item2', 'item3'];
       $ctrl.open();
 
      };
 
     $scope.createStaff = function() {
-      
+
       $ctrl.items = [{'id':null}, 'item2', 'item3'];
       $ctrl.open();
 
@@ -30,7 +30,8 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
         ariaLabelledBy: 'modal-title',
         ariaDescribedBy: 'modal-body',
         templateUrl: 'loginPopup.html',
-        controller: 'bdayLoginCtrl',
+       // controller: 'bdayLoginCtrl',
+        controller: 'bdayEditCtrl',
         controllerAs: '$ctrl',
         size: size,
         appendTo: parentElem,
@@ -47,18 +48,16 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
         // $log.info('Modal dismissed at: ' + new Date());
       });
     };
-
-
   
   });
-
  
   
   // Please note that $uibModalInstance represents a modal window (instance) dependency.
   // It is not the same as the $uibModal service used above.
   
   // Actual Popup Page Controller
-  angular.module('App').controller('bdayLoginCtrl', ['$uibModalInstance','items', '$rootScope','$scope','APP_Config','userService', function ($uibModalInstance, items, $rootScope, $scope, APP_Config,userService) {
+  //                                bdayLoginCtrl    
+  angular.module('App').controller('bdayEditCtrl', ['$uibModalInstance','items', '$rootScope','$scope','APP_Config','userService', function ($uibModalInstance, items, $rootScope, $scope, APP_Config,userService) {
     var $ctrl = this;
     $ctrl.items = items;
     $ctrl.selected = {
@@ -67,7 +66,7 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
    
 
     $scope.selectFile = function(){
-   
+     
       document.getElementById("photo").click();
    };
 
@@ -87,6 +86,7 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
 
 
   var id = items[0].id;
+  $scope.ids = id; // for conditional statement Edit|create
   userService.retrieveBdayStaff(id).then(function(data)
       {
 
@@ -98,12 +98,10 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
           $scope.gender = document.getElementById("gender").value;
           $scope.jobTitle = data.data[0].job_title;
           $scope.dept = data.data[0].department;
+          var image = data.data[0].image ? data.data[0].image : "no-image.png";
+          $scope.image_source = APP_Config.App_Storage_URL+'images/profile_images/'+image;
 
-        // document.getElementById("username").value = data.data[0].username;
-        //  document.getElementById("fname").value = data.data[0].first_name;
-        //  document.getElementById("lname").value = data.data[0].last_name;         
-        //  document.getElementById("jobTitle").value = data.data[0].job_title;
-        //  document.getElementById("dept").value = data.data[0].department;
+
         
         $rootScope.$broadcast('dob', data.data[0].dob) ;
         
@@ -111,23 +109,53 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
       }); 
   
     $ctrl.update = function () {   
-       
-      var bdate = document.getElementById('dob').value;
-
-      var dob = new Date(bdate);
-
-      $uibModalInstance.close($ctrl.selected.item);   
-      
-      var staff =  {'id':id, 'username': $scope.username, 'fname': $scope.fname,'lname': $scope.lname, 'gender': $scope.gender, 'jobTitle': $scope.jobTitle, 'dept': $scope.dept, 'dob': dob};
-      
-     // window.location.href = APP_Config.App_URL+'birthday/edit_bday_staff';
   
-     userService.editBdayStaff(staff).then(function(data)
+    var Data = $ctrl.formData();
+  
+     userService.editBdayStaff(Data).then(function(data)
       {
          console.log(data.data);
          
       });
       
+    };
+
+    $ctrl.create = function () {        
+      
+      var Data = $ctrl.formData();
+
+     userService.createBdayStaff(Data).then(function(data)
+      {
+         console.log(data.data);
+         
+      });
+
+      location.reload();
+      
+    };
+
+    $ctrl.formData = function() {
+
+      var dob = document.getElementById('dob').value;
+
+      var image = $scope.currentFile;
+       
+      var Data = new FormData();       
+     
+      Data.append('username',$scope.username );
+      Data.append('fname',$scope.fname );
+      Data.append('lname', $scope.lname);
+      Data.append('gender', $scope.gender);
+      Data.append('jobTitle', $scope.jobTitle);
+      Data.append('dept', $scope.dept);
+      Data.append('dob', dob); 
+      Data.append('file', image);
+      Data.append('id', id);
+
+$uibModalInstance.close($ctrl.selected.item);
+
+      return Data;
+
     };
   
     $ctrl.cancel = function () {

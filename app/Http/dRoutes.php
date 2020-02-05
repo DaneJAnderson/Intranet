@@ -9,7 +9,6 @@
 5. View 
 6. Upload Method - Multi-upload
 
-
 */
 
 
@@ -34,14 +33,22 @@ Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff')
 // Update Staff Status
  Route::post('/API/updatestatus', 'staffBirthdayController@updatestatus');
 
+ // Edit Birthday 
  Route::post('/API/edit_bday_staff', 'staffBirthdayController@edit_bday_staff');
  
+
+ // Retrieve All Staff Birthdays
  Route::post('/API/retrieve_bday_staff', 'staffBirthdayController@retrieve_bday_staff');
 
+ // Create New staff Birthday Details
+ Route::post('/API/create_bday_staff', 'staffBirthdayController@create_bday_staff');
 
-// Route::post('/updatestatus', function ()
-// 	{
-//     	return "<h1>Hello i am here</h1>";
-// 	});
+ // LDAP connection to Domain Server
+ Route::post('/API/domainconnect', 'domainConnectController@logIn');
+
+ // Suggestion Box 
+ Route::post('/API/suggestion-box/creates', 'suggestionBoxController@creates');
+
+
 
 ?>

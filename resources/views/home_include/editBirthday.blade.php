@@ -5,16 +5,12 @@
     <script type="text/ng-template" id="loginPopup.html">
         <div class="modal-header">
           <center>
-            <h3 class="modal-title text-primary" id="modal-title">Update Staff Birthday Details</h3>
+            <h3 ng-if="ids" class="modal-title text-primary" id="modal-title">Update Staff Birthday Details</h3>
+            <h3 ng-if="!ids" class="modal-title text-primary" id="modal-title">Add New Staff Birthday Details</h3>
           </center>
         </div>
         <div class="modal-body" id="modal-body">
-            <!-- <ul>
-                <li ng-repeat="item in $ctrl.items">
-                    <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">@{{ item }}</a>
-                </li>
-            </ul> -->
-
+ 
             <table id="forms" width=100%>
               <tr>
             <td class="form-group">
@@ -53,7 +49,7 @@
 
               <td>
                 <label>Department</label>
-                <select id="dept" ng-model="dept" class="form-control">
+                <select id="dept" ng-model="dept" class="form-control" required>
                   <option readonly=true>Select Department</option>
                   <option value="Accounts" >Accounts</option>
                   <option value="Audit" >Audit</option>
@@ -99,38 +95,32 @@
                 </p> <br/>
 
               <p class="form-group">
-                <button ng-click="selectFile()">Upload Photo</button>
-                <img  style="margin-left: 50px; width:200px; height:150px;" ng-src="@{{image_source}}" >
+              <!----------------------------  Photo Upload ---------------------->
+                <button class="btn" style="border: 1px solid grey;" ng-click="selectFile()">Upload Photo</button>
+                <img  class="img-thumbnail" style="margin-left: 50px; width:200px; height:150px;" ng-src="@{{image_source}}" >
                 <input type="file" id="photo" class="ng-hide" onchange="angular.element(this).scope().setFile(this)" accept="image/*">
               </p>
-              
-           <!-- Selected: <b>@{{ $ctrl.selected.item }}</b> -->
+ 
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" type="button" ng-click="$ctrl.update()">Update</button>
+            <button ng-if="ids" class="btn btn-success" type="button" ng-click="$ctrl.update()">Update</button>
+            <button ng-if="!ids" class="btn btn-success" type="button" ng-click="$ctrl.create()">Create</button>
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
-    </script>
-    
+    </script>    
 
-    {{-- <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button> --}}
+    <div  >        
 
-    {{-- <div  class="col-md-2 col-xs-12" style="width:80px !important; height: 60px !important; margin-top: 30px"  ng-click="$ctrl.open()">
-        <img class="thumbs img-rounded" style="width:100px !important; height: 80px !important;"  src="images/addBday.png" alt="pic">
-    </div> --}}
-
-    <div class="col-xs-1" >
-        
-
-        <button  ng-click="createStaff()" type="button" class="btn btn-primary">
-             <span class="glyphicon glyphicon-plus"></span>
-       </button> 
-     </div> 
-   
-    <div ng-show="$ctrl.selected">Selection from a modal: @{{ $ctrl.selected }}</div>
+        <button style="margin-top: 0px" ng-click="createStaff()" type="button" class="btn btn-primary pull-left">
+             <span class="glyphicon glyphicon-plus "></span>
+       </button> <h5 class="pull-left" style="padding-left: 7px;margin-top: 9px;" > Add New Staff</h5>
+     </div>
+ 
     <div class="modal-parent">
     </div>
-{{-- </div> --}}
+
+<!-- </div> -->
+
 
 
 

@@ -69,7 +69,7 @@ class Staff_Details extends Model
         return $Staff_details;
     }
 
-    public function editStaffBday($staff)
+    public function editStaffBday($staff,$image)
     {   
          
          $username = $staff['username'];
@@ -77,12 +77,34 @@ class Staff_Details extends Model
          $lname = $staff['lname'];
          $fullname = $staff['fname']." ".$staff['lname'];
          $gender = $staff['gender'];
-         $dob = $staff['dob'];
+         $dob1 = $staff['dob'];
          $dept = $staff['dept'];
          $jobTitle = $staff['jobTitle'];
          $id = $staff['id'];    
        
-        $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname' where id = ?", [$id]);
+         $dob = date("Y-m-d", strtotime( $dob1) ); // Convert date to Format to be stored in Database
+
+        $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname', image = '$image' where id = ?", [$id]);
+        
+        return $Staff_details;
+         
+    }
+
+    public function createStaffBday($staff, $image)
+    {   
+         
+         $username = $staff['username'];
+         $fname = $staff['fname'];
+         $lname = $staff['lname'];
+         $fullname = $staff['fname']." ".$staff['lname'];
+         $gender = $staff['gender'];
+         $dob1 = $staff['dob'];
+         $dept = $staff['dept'];
+         $jobTitle = $staff['jobTitle'];
+         
+         $dob = date("Y-m-d", strtotime( $dob1) ); // Convert date to Format to be stored in Database 
+       
+        $Staff_details = DB::insert("insert into staff_details (id, username,first_name,last_name,sex,department,job_title,dob,full_name,image,status,reports_to,created_at,created_by,updated_at,updated_by) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" , [null,$username,$fname,$lname,$gender,$dept,$jobTitle,$dob,$fullname,$image,1,"",date("Y-m-d H:i:s"),"Administrator",date("Y-m-d H:i:s"),"Administrator"]);
         
         return $Staff_details;
          
@@ -91,6 +113,13 @@ class Staff_Details extends Model
     public function retrieveStaffBday($id)
     { 
         $Staff_details = DB::select("SELECT *FROM staff_details where id = ?", [$id]);               
+        return $Staff_details;
+    }
+
+    public function getAdmin() {
+
+        $Staff_details = DB::select('CALL admin_groups_Retrieve();');
+                        
         return $Staff_details;
     }
 

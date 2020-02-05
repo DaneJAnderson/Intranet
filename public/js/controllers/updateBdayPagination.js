@@ -24,11 +24,9 @@
         closeOnConfirm: false
       },
       function(){
-        swal("Deleted!", "Staff has been deleted successfully", "success");
-      });
 
-        // Remainder Change Status to 3
-        var status = 1;
+          // Remainder Change Status to 3
+        var status = 3;
 
       var x = document.getElementById("deleteBS_"+id); 
   
@@ -37,7 +35,10 @@
       userService.updateStatus(id, status).then(function(data)
       {
          console.log(data.data);
-      });     
+      });  
+        swal("Deleted!", "Staff has been deleted successfully", "success");
+      });      
+         
 
     };
 

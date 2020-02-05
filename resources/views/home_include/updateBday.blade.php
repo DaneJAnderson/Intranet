@@ -9,19 +9,16 @@
  
 
 
-<div ng-controller="PaginationDemoCtrl">
+<div ng-controller="PaginationDemoCtrl">    
 
-  @include('home_include.editBirthday')
-
-     <div class="row">
- 
-      </div>   
- 
+  <center><h2 style="color:orange"> Staff Birthday Manager </h2></center>
 
 <br/><br/>
 
+@include('home_include.editBirthday')
+
 {{--  ----------------- Search and Record Amount Bar ---------------- --}}
-<table width="100%">
+<table width="70%" class="pull-right">
 <tr>
 
  <th>
@@ -36,6 +33,7 @@
       <option>50</option>   
     </select> records at a time. </span>
 </th>
+
 <th style="float:right;">
     <div class="input-group">
         <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search(searchText)" />
@@ -48,7 +46,7 @@
 </table>
     {{-- ------------------------------------------------- --}}
     
-    <br/><br/>
+    <br/><br/><br/>
 
     <table class="table  table-hover data-table sort display">
         <thead bgColor="#fff4e8">
@@ -70,7 +68,7 @@
           <td>@{{staff.first_name}}</td>          
            <td>@{{staff.last_name}}</td>
            <td  ng-if="staff.status == 1"  >
-            <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} class="btn text-success"><b style="padding-right: 15px;">Active</b></button></td>
+            <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} class="btn text-success"><b style="padding-left: 7px;padding-right: 7px;">Active</b></button></td>
            <td  ng-if="staff.status != 1" >
             <button ng-click="status(staff.id)" id=@{{'status_'+staff.id}} style="color:grey" class="btn"><b >Disabled</b></button></td>
            <td >      

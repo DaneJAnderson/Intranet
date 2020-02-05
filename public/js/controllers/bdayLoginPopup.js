@@ -35,18 +35,58 @@ App.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
   // Please note that $uibModalInstance represents a modal window (instance) dependency.
   // It is not the same as the $uibModal service used above.
   
-  angular.module('App').controller('bdayLoginCtrl', ['$uibModalInstance','items', '$rootScope','$scope','APP_Config', function ($uibModalInstance, items, $rootScope, $scope, APP_Config) {
+  angular.module('App').controller('bdayLoginCtrl', ['$uibModalInstance','items', '$rootScope','$scope','APP_Config','userService', function ($uibModalInstance, items, $rootScope, $scope, APP_Config,userService) {
     var $ctrl = this;
     $ctrl.items = items;
     $ctrl.selected = {
       item: $ctrl.items[0]
     };
-   
-  
+
+    $ctrl.pressEnter =function(key) {
+
+      if(key.which ===13){$ctrl.login();}
+      
+    };
+     
     $ctrl.login = function () {   
        
+
+      var auth = { 'username':$scope.loginName, 'password': $scope.loginPwd };
+
+      // window.location.href = APP_Config.App_URL+'birthday/updates';
+
+      userService.loginBdayStaff(auth).then(function(data)
+      {
+         
+         console.log(data);
+         
+			$scope.response = data.data.auth;
+			
+			if(data.data.status == 200)
+			{
+				if($scope.response=="1")
+				{
+          window.location.href = APP_Config.App_URL+'birthday/updates';
+					//location.assign(APP_Config.App_API_URL+'birthday/updates');
+				}
+				else
+				{
+					sweetAlert("Oops...", "Username and Password incorrect", "warning");
+				}
+			}
+			else if(data.status == 419)
+			{
+				sweetAlert("Oops...", ""+data.data.Error, "warning");
+			}
+			else
+			{
+				sweetAlert("Oops...", "An unexpect error occured, our engineers will be working to get it resolved. Please try again later", "error");
+			}
+         
+      });
+
       $uibModalInstance.close($ctrl.selected.item);
-      window.location.href = APP_Config.App_URL+'birthday/updates';
+      //window.location.href = APP_Config.App_URL+'birthday/updates';
 
 
       // Call to Parent HomeController (birthday)

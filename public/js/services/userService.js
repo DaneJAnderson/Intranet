@@ -333,17 +333,41 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 	{
 		var deferred = $q.defer();
 
- 	var headers =  { 'Content-Type' : 'application/json' };
+		var headers =  {  
+			headers: {'Content-Type': undefined },
+			transformRequest: angular.identity }; // Needed to Upload files to Server.
 	$http.post(APP_Config.App_API_URL+'edit_bday_staff', staff, headers)
-		.then(
-			function(data, status)
-			{
-			
+		.then(function(data, status)
+			{			
 				return deferred.resolve({"status":status, "data":data.data});
 			}
 		)
-		.catch(
-			function(data, status)
+		.catch(function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+	};
+	
+// ------------------------- Create Birthday Staff ----------------------- //
+
+	this.createBdayStaff = function (Data)
+	{
+		var deferred = $q.defer();
+
+ 	var headers =  {  
+        headers: {'Content-Type': undefined },
+		transformRequest: angular.identity }; // Needed to Upload files to Server.
+		
+	$http.post(APP_Config.App_API_URL+'create_bday_staff', Data, headers)
+		.then(function(data, status)
+			{			
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(function(data, status)
 			{
 				return deferred.reject({"status":status, "data":data.data});
 			}
@@ -359,15 +383,47 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 
  	var headers =  { 'Content-Type' : 'application/json' };
 	$http.post(APP_Config.App_API_URL+'retrieve_bday_staff', {'id': id}, headers)
-		.then(
-			function(data, status)
-			{
-				
+		.then(function(data, status)
+			{				
 				return deferred.resolve({"status":status, "data":data.data});
 			}
 		)
-		.catch(
-			function(data, status)
+		.catch(function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+	};
+	
+	this.loginBdayStaff = function (auth)
+	{
+		var deferred = $q.defer();
+
+	 var headers =  { 'Content-Type' : 'application/json' };
+	 
+	 var Form_Data_Object = new FormData();
+	 Form_Data_Object.append('username', auth.username);
+	 Form_Data_Object.append('password', auth.password);
+
+	
+	 // Test login To be removed.
+	// return {'auth':1,'status':200};
+	  
+	 $http.post(APP_Config.App_API_URL+'domainconnect', Form_Data_Object,
+	 {
+		 withCredentials: true,
+		 headers:
+		 {
+		 'Content-Type': undefined
+		 },transformRequest: angular.identity 
+	 }).then(function(data, status)
+			{				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(function(data, status)
 			{
 				return deferred.reject({"status":status, "data":data.data});
 			}
