@@ -11,7 +11,7 @@ use DB;
 use File;
 use Storage;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Utility;
+use App\Models\Utility; 
 use App\Exceptions\customValidationException;
 
 class Staff_Details extends Model

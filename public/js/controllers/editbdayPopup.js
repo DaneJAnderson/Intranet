@@ -84,7 +84,7 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
     reader.readAsDataURL(element.files[0]);
   };
 
-
+ 
   var id = items[0].id;
   $scope.ids = id; // for conditional statement Edit|create
   userService.retrieveBdayStaff(id).then(function(data)
@@ -120,6 +120,14 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
       
     };
 
+    $ctrl.validate = function(form, opt){
+
+      if(form.$valid){
+      if(opt=='update'){$ctrl.update();}
+      if(opt=='create'){$ctrl.create();}
+      } 
+  };
+
     $ctrl.create = function () {        
       
       var Data = $ctrl.formData();
@@ -130,9 +138,11 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
          
       });
 
-      location.reload();
+       location.reload();
       
     };
+
+   
 
     $ctrl.formData = function() {
 
@@ -152,7 +162,9 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
       Data.append('file', image);
       Data.append('id', id);
 
-$uibModalInstance.close($ctrl.selected.item);
+          
+   
+    $uibModalInstance.close($ctrl.selected.item);
 
       return Data;
 

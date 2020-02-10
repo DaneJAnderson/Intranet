@@ -326,6 +326,31 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		
 		return deferred.promise; //return the promise
 	};
+	// --------------------- Update Status ------------------------------ //
+
+	this.updateSuggestion = function (id)
+	{
+		var deferred = $q.defer();
+
+	 var headers =  { 'Content-Type' : 'application/json' };
+	 data = {'id': id};
+	$http.post(APP_Config.App_API_URL+'suggestionbox/updates', data, headers)
+		.then(
+			function(data, status)
+			{
+				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(
+			function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise; //return the promise
+	};
 	
 // ------------------------- Edit Birthday Staff ----------------------- //
 
@@ -396,6 +421,47 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		
 		return deferred.promise; //return the promise
 	};
+
+	this.suggestion = function (subject, suggestion) {
+		
+		var deferred = $q.defer();
+
+ 	var headers =  { 'Content-Type' : 'application/json' };
+	$http.post(APP_Config.App_API_URL+'suggestionbox/creates', {'subject':subject, 'suggestion': suggestion}, headers)
+		.then(function(data, status)
+			{				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise;
+	};
+
+	this.getSuggestions = function () {
+		
+		var deferred = $q.defer();
+
+ 	var headers =  { 'Content-Type' : 'application/json' };
+	$http.get(APP_Config.App_API_URL+'suggestionbox/retrieves', headers)
+		.then(function(data, status)
+			{				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise;
+	};
+
 	
 	this.loginBdayStaff = function (auth)
 	{

@@ -9,30 +9,31 @@
             <h3 ng-if="!ids" class="modal-title text-primary" id="modal-title">Add New Staff Birthday Details</h3>
           </center>
         </div>
+        <form name="form" >
         <div class="modal-body" id="modal-body">
  
             <table id="forms" width=100%>
               <tr>
             <td class="form-group">
                 <label>Username</label>
-                <input type="text" id="username" value="" ng-model="username" class="form-control" required />
+                <input type="text" name="usrname" id="username" value="" ng-model="username" class="form-control" ng-required="true" required/>
               </td>
              
             <td class="form-group">            
                 <label>First Name</label>
-                <input type="text" id="fname" value="" ng-model="fname" class="form-control" required />              
+                <input type="text" id="fname" value="" ng-model="fname" class="form-control" ng-required="true" required />              
               </td>
             </tr>
 
             <tr>
               <td class="form-group">
                 <label>Last Name</label>
-                <input type="text" id="lname" value="" ng-model="lname" class="form-control" required />
+                <input type="text" id="lname" value="" ng-model="lname" class="form-control" ng-required="true" required />
               </td>
               
 
               <td >   <label>Gender: </label>              
-          <select id="gender" ng-model="gender" class="form-control">
+          <select id="gender" ng-model="gender" class="form-control" ng-required="true" required>
               <option >Select Gender</option>
               <option value=0 >Male</option>
               <option value=1 >Female</option>
@@ -43,13 +44,13 @@
               <tr>
               <td class="form-group">
                 <label>Job Title</label>
-                <input type="text" id="jobTitle" ng-model="jobTitle" class="form-control" required />
+                <input type="text" id="jobTitle" ng-model="jobTitle" class="form-control" ng-required="true" required />
               </td>
             
 
               <td>
                 <label>Department</label>
-                <select id="dept" ng-model="dept" class="form-control" required>
+                <select id="dept" ng-model="dept" class="form-control" ng-required="true" required>
                   <option readonly=true>Select Department</option>
                   <option value="Accounts" >Accounts</option>
                   <option value="Audit" >Audit</option>
@@ -102,11 +103,13 @@
               </p>
  
         </div>
-        <div class="modal-footer">
-            <button ng-if="ids" class="btn btn-success" type="button" ng-click="$ctrl.update()">Update</button>
-            <button ng-if="!ids" class="btn btn-success" type="button" ng-click="$ctrl.create()">Create</button>
+        <div class="modal-footer">                                                  <!--$ctrl.update()  -->
+            <input type="submit" value="Update" ng-if="ids" class="btn btn-success"  ng-click="$ctrl.validate(form,'update')"/>
+                                                                            <!--$ctrl.create()  -->
+            <input type="submit" value="Create" ng-if="!ids" class="btn btn-success" type="button" ng-click="$ctrl.validate(form,'create')" />
             <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
         </div>
+      </form>
     </script>    
 
     <div  >        

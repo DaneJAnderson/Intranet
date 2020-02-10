@@ -161,6 +161,23 @@
 						</div>
 					</li>
 
+					{{-- -------------- Suggestion Box ----------------------------- --}}
+
+					<li class="portfolio-item2" data-id="id-2" data-type="cat-item-1" style="margin-bottom: 25px;">
+						<div>
+							<span class="image-block">
+								
+							<a class="image-zoom" href="http://<?php echo Config::get('constants.BASE_URL'); ?>suggestionbox/shows" target="_self" rel="prettyPhoto[gallery]">
+								<img  src="http://<?php echo Config::get('constants.BASE_URL'); ?>images/suggestion-box.png" class="img-responsive" alt="Conceit">
+								<div class="port-info" style="margin-top: -60px;">
+									<h5>Suggestion Box</h5>
+									<p>Staff Feedback</p>
+								</div>
+							</a>
+						</span>
+						</div>
+					</li>
+
 					<div class="clearfix"></div>
 				</ul>
 				<!--end portfolio-area -->

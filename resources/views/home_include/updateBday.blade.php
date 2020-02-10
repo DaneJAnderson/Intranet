@@ -9,7 +9,7 @@
  
 
 
-<div ng-controller="PaginationDemoCtrl">    
+<div ng-controller="PaginationDemoCtrl" ng-init="getAllBdayStaff()">    
 
   <center><h2 style="color:orange"> Staff Birthday Manager </h2></center>
 

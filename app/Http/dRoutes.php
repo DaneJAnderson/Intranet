@@ -46,9 +46,19 @@ Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff')
  // LDAP connection to Domain Server
  Route::post('/API/domainconnect', 'domainConnectController@logIn');
 
- // Suggestion Box 
- Route::post('/API/suggestion-box/creates', 'suggestionBoxController@creates');
+ // Suggestion Box Post to Database
+ Route::post('/API/suggestionbox/creates', 'suggestionBoxController@creates');
 
+ // Suggestion Box Display Input Fields
+ Route::get('/suggestionbox/shows', 'suggestionBoxController@shows');
 
+ // Suggestion Box Show All suggestions
+ Route::get('/suggestionbox/show_suggest', 'suggestionBoxController@show_suggest');
+
+ // Suggestion Box Display Suggestions
+ Route::get('/API/suggestionbox/retrieves', 'suggestionBoxController@retrieves');
+
+ Route::post('/API/suggestionbox/updates', 'suggestionBoxController@updates');
+ 
 
 ?>

@@ -68,7 +68,7 @@
     };
   
   
-
+$scope.getAllBdayStaff = function () { 
 
   userService.getAllStaff().then(function(data)
 {
@@ -127,6 +127,118 @@ $scope.setItemsPerPage = function(num) {
 };
 
 });
+
+};
+
+
+// ----------------------------------- Suggestion Box ---------------------------------//
+
+$scope.getSuggestions = function() {
+
+    //alert('Working!!'); return;
+
+    userService.getSuggestions().then(function(data)
+{
+    
+    // console.log(data.data);
+    $scope.allSuggestions = data.data; 
+
+    //  Search All Staff Members
+    $scope.search = function (text) {
+      
+     // $scope.searchText
+      if ( text != undefined && text.length > 1) {        
+       
+        $scope.itemsPerPage = $scope.allSuggestions.length;
+        
+      } else {
+        $scope.itemsPerPage = 10;
+      } 
+      
+  };
+
+
+  $rootScope.viewby = 10;  
+  $scope.totalItems = $scope.allSuggestions.length;
+  $scope.currentPage = 1;
+  $scope.itemsPerPage = $scope.viewby;
+  $scope.maxSize = 5; //Number of pager buttons to show
+
+  $scope.setPage = function (pageNo) {
+    $scope.currentPage = pageNo;
+  };
+
+  $scope.pageChanged = function() {
+  //  console.log('Page changed to: ' + $scope.currentPage);
+  };
+
+$scope.setItemsPerPage = function(num) {
+  $scope.itemsPerPage = num;
+  $scope.currentPage = 1; //reset to first page
+};
+
+
+$scope.accordion = function (id){
+
+var panel = document.getElementById('suggest_'+id);
+
+panel.previousElementSibling.classList.toggle("active");
+
+
+if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      } 
+
+
+
+};
+
+});
+
+$scope.deleteSuggest = function(id) {
+
+  sweetAlert({
+    title: "Are you sure you want to delete this Suggestion?",
+    text: "",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Yes, delete it!",
+    closeOnConfirm: false
+  },
+  function(){
+
+      // Remainder Change Status to 3
+    
+
+  var x = document.getElementById("deleteSuggest_"+id); 
+
+   x.innerHTML = "";
+       
+  userService.updateSuggestion(id).then(function(data)
+  {
+     console.log(data.data);
+  });  
+    swal("Deleted!", "Suggestion has been deleted successfully", "success");
+  });      
+     
+
+};
+
+
+
+
+
+    
+};
+
+
+
+
+// ------------------------------------------------------------------------------------//
+
     }]);
 
 //  Select Page Amount 
