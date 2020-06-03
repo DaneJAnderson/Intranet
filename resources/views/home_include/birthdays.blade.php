@@ -82,8 +82,8 @@
 </style>
 
 {{-- ng-if="Birthdays.length>0" --}}
-<div class="bgColorbb">
-    <div  class="banner_bottom bgimg " style=" padding-top: 20px; padding-bottom: 20px;">
+<div class="bgColorbb" >
+    <div  class="banner_bottom bgimg " style=" padding-top: 20px; padding-bottom: 20px;" >
 		<div class="banner_bottom_in">
 			<h3 class="tittle-w3ls we textShadowbb" style="color: white;">Staff Birthday Listing</h3>
 		
@@ -133,7 +133,7 @@
 <div ng-if="UpcomingBday1st.length > 0" class="row col-12 slidebb container-fluid">
 
 				<p >
-					<h2 class="textShadowbb text-center">Upcoming Birthdays .
+					<h2 class="textShadowbb text-center">Persons Celebrating Their Birthday This Month.
 					</h2>
 				</p>
 <br/><br/>
@@ -187,6 +187,56 @@
 					<div class="p-1 upComColor text-center ">@{{birthday2.first_name+' '+birthday2.last_name}} 
 						<br/>Birthday:  <span ng-bind="convertToDate(birthday2.dob) | date:'d MMMM'"></span>
 						<br/><span class=" text-white text-left textSmallx"> Department: <span ng-bind="substring(birthday2.department)" ng-if="birthday2.department" ></span></span>
+					</div>
+					</div>
+
+		        </div>
+
+		</div>
+		
+		<div ng-if="UpcomingBday3rd.length  > 0" class="item">
+			{{-- style="margin-left: 30px; " --}}
+			<div class="row upcoming" >
+
+			<div ng-repeat="birthday3 in UpcomingBday3rd | limitTo : 4" class="col-xs-3 thumbsSlide thumbnail mr">
+
+			<img ng-if="birthday3.sex==0" class="thumbs img-rounded" src="images/Male_worker.png"
+			ng-src="@{{getBirthdayImage(birthday3.image, birthday3.sex)}}"
+			on-error-src="images/Male_worker.png"
+			alt="pic">
+
+			<img ng-if="birthday3.sex==1" class="thumbs img-rounded" src="images/Female_worker.png"
+			ng-src="@{{getBirthdayImage(birthday3.image, birthday3.sex)}}"
+			on-error-src="images/Female_worker.png"
+			alt="pic">
+			<div class="p-1 upComColor text-center ">@{{birthday3.first_name+' '+birthday3.last_name}} 
+			<br/>Birthday:  <span ng-bind="convertToDate(birthday3.dob) | date:'d MMMM'"></span>
+			<br/><span class=" text-white text-left textSmallx"> Department: <span ng-bind="substring(birthday3.department)" ng-if="birthday3.department" ></span></span>
+			</div>
+			</div>
+
+			</div>
+
+		</div>
+		
+		<div ng-if="UpcomingBday4th.length  > 0" class="item">
+										{{-- style="margin-left: 30px; " --}}
+				<div class="row upcoming" >
+				
+					<div ng-repeat="birthday4 in UpcomingBday4th | limitTo : 4" class="col-xs-3 thumbsSlide thumbnail mr">
+						
+					<img ng-if="birthday4.sex==0" class="thumbs img-rounded" src="images/Male_worker.png"
+					ng-src="@{{getBirthdayImage(birthday4.image, birthday4.sex)}}"
+					 on-error-src="images/Male_worker.png"
+					alt="pic">
+
+					<img ng-if="birthday4.sex==1" class="thumbs img-rounded" src="images/Female_worker.png"
+					ng-src="@{{getBirthdayImage(birthday4.image, birthday4.sex)}}"
+					 on-error-src="images/Female_worker.png"
+					alt="pic">
+					<div class="p-1 upComColor text-center ">@{{birthday4.first_name+' '+birthday4.last_name}} 
+						<br/>Birthday:  <span ng-bind="convertToDate(birthday4.dob) | date:'d MMMM'"></span>
+						<br/><span class=" text-white text-left textSmallx"> Department: <span ng-bind="substring(birthday4.department)" ng-if="birthday4.department" ></span></span>
 					</div>
 					</div>
 

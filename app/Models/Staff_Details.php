@@ -84,7 +84,13 @@ class Staff_Details extends Model
        
          $dob = date("Y-m-d", strtotime( $dob1) ); // Convert date to Format to be stored in Database
 
-        $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname', image = '$image' where id = ?", [$id]);
+         if(empty($image)){
+
+            $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname' where id = ?", [$id]);
+         }else{
+
+        $Staff_details = DB::update("update staff_details set username = '$username', first_name = '$fname',last_name = '$lname', sex = '$gender', department = '$dept', job_title = '$jobTitle', dob = '$dob', full_name = '$fullname', image = '$image' where id = ?", [$id]); }
+        
         
         return $Staff_details;
          

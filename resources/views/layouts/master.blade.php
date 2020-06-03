@@ -27,6 +27,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
 
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/Home.css" rel="stylesheet" type="text/css" media="all" />
+
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/header.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/document.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/font-awesome.css" rel="stylesheet">

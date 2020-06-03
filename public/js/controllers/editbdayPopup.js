@@ -115,6 +115,7 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
      userService.editBdayStaff(Data).then(function(data)
       {
          console.log(data.data);
+         sweetAlert("Update Successful", "", "success");
          
       });
       
@@ -135,10 +136,23 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
      userService.createBdayStaff(Data).then(function(data)
       {
          console.log(data.data);
+         sweetAlert({       
+            title: "Created Successfully",
+            text: "New Staff Added",
+            type: "success",
+            // showCancelButton: true,
+            // confirmButtonClass: "btn-danger",
+            // confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false       
+        },
+        function(){
+  
+        location.reload();
+        });      
          
       });
 
-       location.reload();
+      
       
     };
 
@@ -165,7 +179,7 @@ App.controller('editPopupCtrl', function ($uibModal, $log, $document, $scope, us
           
    
     $uibModalInstance.close($ctrl.selected.item);
-
+    
       return Data;
 
     };

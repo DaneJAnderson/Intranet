@@ -53,4 +53,14 @@ class suggestionBoxController extends Controller
         return response()->json($suggest);
 
     }
+
+    function suggest_response(Request $request){      
+         
+        $input = $request->only(['id','response']);
+        $SuggestionBox = new suggestionBox();
+        $suggest = $SuggestionBox->addResponse($input);
+
+        return response()->json($suggest);
+    
+    }
 }

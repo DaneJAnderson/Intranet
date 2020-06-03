@@ -1,5 +1,5 @@
 .navbar-default {
-    background-color: rgb(255, 250, 234);
+    /* background-color: rgb(255, 250, 234); */
     /* border-color: #E7E7E7; */
 }
 
@@ -18,12 +18,12 @@ ul li a:hover,.dropdown .dropdown-menu li a:hover {
 }
 
 .dropdown .dropdown-menu {
-    background-color: rgb(255, 250, 234); 
+    /* background-color: rgb(255, 250, 234);  */
     border: none;
 }
 
 .dropdown .dropdown-menu li:hover a {
-    background-color: #fff; 
+    background-color: rgb(238, 238, 238); 
     color: blue;
 }
 
@@ -31,7 +31,12 @@ ul li a:hover,.dropdown .dropdown-menu li a:hover {
 
     border-bottom: 1px solid rgba(128, 128, 128, 0.2);
     
-    
 }
 .dropdown .dropdown-menu li a {color: #000 !important;}
 
+ul li a { font-family: Comic Sans MS, cursive, sans-serif;
+          color: rgb(61, 34, 3)  !important}
+
+ .HR {border: 0.5px solid orange; position: relative; margin-top: 0px; margin-bottom: -10px;}
+
+ .HR2 {border: 0.5px solid orange; margin-bottom: -1px; margin-top: -5px; width: 85%;}

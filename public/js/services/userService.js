@@ -213,7 +213,7 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 				    );
 		
 		return deferred.promise; //return the promise
-    }
+    };
 
 
     /**
@@ -242,7 +242,7 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 				    );
 		
 		return deferred.promise; //return the promise
-    }
+    };
 
 
     /**
@@ -491,11 +491,42 @@ App.service('userService', ['$http', '$q', 'APP_Config', function($http, $q, APP
 		)
 		.catch(function(data, status)
 			{
+				sweetAlert("Oops...", "Username and Password incorrect", "warning");
 				return deferred.reject({"status":status, "data":data.data});
 			}
 		);
 		
 		return deferred.promise; //return the promise
-    };
+	};
+	
+
+
+	//-------------------------- Suggestion-Box Response Button --------------------------//
+
+	this.sentSuggestionResponse = function (id, response) {
+		
+		var deferred = $q.defer();
+
+	//	console.log(response);
+
+ 	var headers =  { 'Content-Type' : 'application/json' };
+	$http.post(APP_Config.App_API_URL+'suggestionbox/suggest_response',{'id':id, 'response':response}, headers)
+		.then(function(data, status)
+			{				
+				return deferred.resolve({"status":status, "data":data.data});
+			}
+		)
+		.catch(function(data, status)
+			{
+				return deferred.reject({"status":status, "data":data.data});
+			}
+		);
+		
+		return deferred.promise;
+
+			// return {"data": 'test response'};
+
+	};
+
 	
 }]);

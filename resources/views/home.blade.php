@@ -57,7 +57,7 @@
 				<div class="container">
 					<div class="carousel-caption">
 						<!--h3>Giving back you the commity</h3-->
-						<p>Blast Off 2018</p>
+						<p>COK Helping to Develop our Children</p>
 						<!--div class="top-buttons">
 							<div class="bnr-button">
 								<a class="act" href="single.html">Read More</a>
@@ -106,14 +106,16 @@
 			<!--/banner_bottom-->
 			<div class="banner_bottom" style="">
 				<div class="banner_bottom_in" style="margin-left: auto; margin-right: auto; width: 90%;">
-					<h3 class="tittle-w3ls we">COMING SOON (Home Folders)</h3>
+					
+					<!-- <h3 class="tittle-w3ls we">COMING SOON (Home Folders)</h3>
 
 					<p>
 						In an effort to improve productivity and make your work easier, MIS will be introducing Personal Home Folders for all staff. More information will be provided in short order.
-					</p>
+					</p> -->
 
 
-					<img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/others/Cloud_Storage_1280x727.png" class="img-responsive" alt="">
+					<!--{{-- <img src="http://<?php// echo Config::get('constants.Storage_URL'); ?>images/others/Cloud_Storage_1280x727.png" class="img-responsive" alt=""> --}}-->
+					<a href="http://<?php echo Config::get('constants.Storage_URL'); ?>images/articles/COK_Micro_ONE_STOP_LOAN_Flyer_back.pdf"><img src="http://<?php echo Config::get('constants.Storage_URL'); ?>images/others/micro_finance_promo_front.png" class="img-responsive" alt=""></a>
 				</div>
 			</div>
 			<!--//banner_bottom-->

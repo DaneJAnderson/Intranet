@@ -1,0 +1,13 @@
+
+1. Split the suggestions page into 2, to display suggestions with response.
+2. Suggestion box on the right side of the page.
+3. Answered-suggestions on the left.
+
+Pull subject, suggestions, response.
+
+1. update Suggestion-Box database table
+        add a response field.
+
+
+
+On showSuggestions (Admin Page) add response text box.

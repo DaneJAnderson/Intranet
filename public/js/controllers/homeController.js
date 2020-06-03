@@ -74,11 +74,15 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 				
 				if(upcomingBday.length > 4) {
 				// var halfwayThrough = Math.floor(upcomingBday.length / 2);
-				var firstHalf = upcomingBday.slice(0, 4);
-				var secHalf = upcomingBday.slice(4, upcomingBday.length);
+				var firstHalf = upcomingBday.slice(0, 4);				
+				var secHalf = upcomingBday.slice(4, 8);
+				var thirdHalf = upcomingBday.slice(8, 12);
+				var forthHalf = upcomingBday.slice(12, upcomingBday.length);
 
 				$scope.UpcomingBday1st = firstHalf;
 				$scope.UpcomingBday2nd = secHalf;
+				$scope.UpcomingBday3rd = thirdHalf;
+				$scope.UpcomingBday4th = forthHalf;				
 
 				
 				}
@@ -152,7 +156,7 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 	
 	
 	
-	/*_____________________________________________________________________________________________________________________________________*/
+	/*______________________________________________________________________________________________________________________*/
 
 	/*Globals*/
 	angular.element(document).ready(function ()
@@ -160,7 +164,6 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 		$rootScope.utilityService.console_log("START - angular ready");
 		
 		//Variables
-
 
 		$scope.getLastestArticles();
 		$scope.getCurrentBirthdays();
@@ -171,7 +174,6 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 	$rootScope.utilityService.console_log("STOP - homeController");
 
 
-
 	// Call to child updateBdayController (birthday) 
 	$rootScope.$on('bdayUpdate', function(event, data) {
         $rootScope.$emit('bdayUpdateP', 'i am parent =: '+data); 
@@ -179,3 +181,6 @@ App.controller('homeController', ['$scope', '$http', '$rootScope', 'articleServi
 
 
 }]);
+
+
+

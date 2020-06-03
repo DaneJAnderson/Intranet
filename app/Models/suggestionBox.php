@@ -30,4 +30,14 @@ class suggestionBox extends Model
         $Suggest = DB::update('update suggestions set status = 3 where id = ?', [$id]);              
         return $Suggest;
     }
+
+    public function addResponse($input)
+    {   $id = $input['id'];
+        $response = $input['response'];
+        $query = 'update suggestions set response = '.$response.' where id = ?';
+         $Suggest = DB::update("update suggestions set response = '$response' where id = ?", [$id]); 
+        
+        // $Suggest = DB::table('suggestions')->where('response', $response);
+        return $Suggest;
+    }
 }

@@ -49,9 +49,12 @@
 
     {{-- <button type="button" class="btn btn-default" ng-click="$ctrl.open()">Open me!</button> --}}
 
-    <div  class="col-md-1 col-xs-12 addbday" style="width:80px !important; height: 60px !important; margin-top: 30px"  ng-click="$ctrl.open()">
-        <img class="thumbs img-rounded" style="width:100px !important; height: 80px !important;"  src="images/addBday.png" alt="pic">
+    <div ng-if="!suggested"  class="col-md-1 col-xs-12 addbday" style="width:80px !important; height: 60px !important; margin-top: 30px"  ng-click="$ctrl.open()">
+        <img class="thumbs img-rounded" style="width:100px !important; height: 80px !important;"  ng-src="images/addBday.png" alt="pic">
     </div>
+
+    
+    <a ng-if="suggested"  ng-click="$ctrl.suggested()"  href=""><i><u class="signin"> HR Signin </u></i></a>
    
     {{-- <div ng-show="$ctrl.selected">Selection from a modal: @{{ $ctrl.selected }}</div> --}}
     <div class="modal-parent">

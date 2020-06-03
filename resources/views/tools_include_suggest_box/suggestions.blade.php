@@ -25,18 +25,28 @@
   color: orange !important;
 
 }
+
+@media screen and (min-width:766px) and (max-width: 939px) {
+
+.topp{
+  margin-top: 200px !important;
+}
+
+}
+
 </style>
 
-<div ng-controller="suggestionController" class="row bg-primary" style="margin-top: 140px; margin-bottom: 50px;">
+<div ng-controller="suggestionController" ng-init="suggested=true" class="row bg-primary topp" style="margin-top: 140px; margin-bottom: 50px;">
 
+        {{-- Background Image --}}
         <div class="suggestImage "></div>
-    {{-- #f5f5f0 --}}
-
-    
+     
  
      <center><h2 style="color:orange"><span style="background:white;border-radius: 10px; padding: 10px;border: 1px solid #3385ff;">Suggestion Box</span></h2></center>
 <br/>
-    <h3 style="float:right; margin-right:10%;margin-top: -70px; "><a href="http://<?php echo Config::get('constants.BASE_URL'); ?>suggestionbox/show_suggest"><i><u class="signin"> HR Signin </u></i></a></h3> 
+    <h3 style="float:right; margin-right:10%;margin-top: -70px; ">
+      @include("home_include.loginPopup")
+      </h3> 
      <br/><br/>
      
     

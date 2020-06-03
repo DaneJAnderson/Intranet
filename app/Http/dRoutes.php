@@ -16,7 +16,7 @@
 Route::get('/uploads/creates', 'uploadsController@creates'); //
 
 // Retrieve File from database for Editing.
-Route::get('/uploads/creates/{id}', 'uploadsController@retrieve');
+Route::get('/uploads/creates/{$id}', 'uploadsController@retrieve');
 
 // Create new Records file Api
 Route::post('/uploads/post', 'uploadsController@post');
@@ -59,6 +59,9 @@ Route::get('/API/birthday_staff_manager', 'staffBirthdayController@getAllStaff')
  Route::get('/API/suggestionbox/retrieves', 'suggestionBoxController@retrieves');
 
  Route::post('/API/suggestionbox/updates', 'suggestionBoxController@updates');
+
+  // Suggestion Box get Response
+  Route::post('/API/suggestionbox/suggest_response', 'suggestionBoxController@suggest_response');
  
 
 ?>

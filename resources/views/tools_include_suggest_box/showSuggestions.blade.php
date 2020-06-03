@@ -41,6 +41,7 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+    
   }
   </style>
 
@@ -100,7 +101,15 @@
           
         <td >@{{  suggest.created_at | date:'MM/dd/yyyy @ h:mma'}}</td>
         <td width="50%"><button  class="accordion" ng-click="accordion(suggest.id)">@{{suggest.subject}} </button>         
-        <div class="panel" id=@{{'suggest_'+suggest.id}}><p><br/> @{{suggest.suggestion}} </p></div>
+        <div class="panel"  id=@{{'suggest_'+suggest.id}}><p style="width:100%; color:black !important; padding: 0px 10px 10px 10px; background: #f5f5f5"><br/> @{{suggest.suggestion}} </p>
+          
+          <button  class=" pull-right btn btn-info" style="margin-bottom: 10px;" ng-click="respond(suggest.id)">Response </button>
+        <div id=@{{'textarea_'+suggest.id}} style="padding: 0px 0px 0px 0px; display: none">
+          <textarea class="shadow " id=@{{'response_'+suggest.id}} style="min-width:100%; height: 20vh; resize:none; outline: none" >@{{suggest.response}}</textarea>
+          <button style="margin-left: 50%" class="accordio btn btn-success" ng-click="saveResponse(suggest.id)">Save </button><br/><br/>
+        </div>
+
+        </div>
         </td>
          
         <td>   
@@ -110,10 +119,10 @@
     </tbody>
 </table>   
 
-  <ul style="float:right" uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" ng-change="pageChanged()"  boundary-link-numbers="true"
+  <ul style="float:right; " uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" ng-change="pageChanged()"  boundary-link-numbers="true"
   items-per-page="itemsPerPage" ></ul>
   
-      <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+      <pagination  total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
 
         
 </div> <!-- Ends Controller -->

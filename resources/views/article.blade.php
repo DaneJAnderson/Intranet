@@ -4,7 +4,7 @@
 
 @section('content')
 <link href="http://<?php echo Config::get('constants.BASE_URL'); ?>css/single.css" rel="stylesheet" type="text/css" media="all" />
-<div ng-controller="articleController" ng-init="id = {{$id}};">
+<div ng-controller="articleController" ng-init="id = @{{$id}};">
 	<!--content-->
 	<div class="content">
 		<div class="banner_inner_con" style="background: url(../images/banner2_.jpg)">

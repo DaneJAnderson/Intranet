@@ -1,8 +1,21 @@
 App.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
     var $ctrl = this;
-    $ctrl.items = ['item1', 'item2', 'item3'];
+    $ctrl.items = [false, 'item2', 'item3'];
+
+    //  If On the Suggestion Page
+    $ctrl.suggested = function () {
+
+      $ctrl.items = [true, 'item2', 'item3'];
+      $ctrl.open();
+
+    };
+
+    
   
     $ctrl.animationsEnabled = true;
+
+    
+
   
     $ctrl.open = function (size, parentSelector) {
       var parentElem = parentSelector ? 
@@ -58,14 +71,18 @@ App.controller('ModalDemoCtrl', function ($uibModal, $log, $document) {
       userService.loginBdayStaff(auth).then(function(data)
       {
          
-         console.log(data);
-         
+                  
 			$scope.response = data.data.auth;
 			
 			if(data.data.status == 200)
 			{
 				if($scope.response=="1")
 				{
+          if($ctrl.items[0]){
+
+            window.location.href = APP_Config.App_URL+'suggestionbox/show_suggest';
+
+          }else
           window.location.href = APP_Config.App_URL+'birthday/updates';
 					//location.assign(APP_Config.App_API_URL+'birthday/updates');
 				}

@@ -191,11 +191,54 @@ if (panel.style.maxHeight) {
         panel.style.maxHeight = panel.scrollHeight + "px";
       } 
 
+};
 
+// ----------------------------- Response to Suggestion Textarea -------------------//
+
+// Response Button
+$scope.respond = function (id){
+
+  var panel = document.getElementById('textarea_'+id);
+  var panel2 = document.getElementById('suggest_'+id);     
+      panel2.style.maxHeight = "100%"; 
+
+if (panel.style.display == 'none') {
+       // panel.style.display = 'block';
+        $("#textarea_"+id).slideDown();
+      } else {
+        $("#textarea_"+id).slideUp();
+      //  panel.style.display = 'none';
+      }
+
+      // $scope.response = userService.getSuggestionResponse(id).data;
+
+      // var panel2 = document.getElementById('suggest_'+id);     
+      // panel2.style.maxHeight = "100%";    
 
 };
 
+//------------- Suggesion-Box Response Output --------------//
+
+
+$scope.saveResponse = function(id){   
+
+ var response = document.getElementById('response_'+id).value;
+ 
+  userService.sentSuggestionResponse(id, response).then(function(data)
+  {
+      console.log(data.data);
+
+  });
+
+};
+
+
+
+
 });
+
+
+
 
 $scope.deleteSuggest = function(id) {
 
